@@ -71,6 +71,7 @@ def fetch(fonte: dict) -> list[dict]:
         elemento_data = scheda.select_one(selettori.get("data", "")) if selettori.get("data") else None
         elemento_riassunto = scheda.select_one(selettori.get("riassunto", "")) if selettori.get("riassunto") else None
         elemento_scadenza = scheda.select_one(selettori.get("scadenza", "")) if selettori.get("scadenza") else None
+        elemento_stato = scheda.select_one(selettori.get("stato", "")) if selettori.get("stato") else None
 
         titolo = _testo_o_vuoto(elemento_titolo)
         link_relativo = elemento_link.get("href") if elemento_link else None
@@ -89,8 +90,10 @@ def fetch(fonte: dict) -> list[dict]:
             "riassunto": _testo_o_vuoto(elemento_riassunto),
             "data_pubblicazione": _testo_o_vuoto(elemento_data) or None,
             "scadenza": scadenza,
+            "stato_testo": _testo_o_vuoto(elemento_stato) or None,
             "ente": fonte["nome"],
             "livello": fonte["livello"],
+            "area": fonte.get("area"),
         })
 
     return risultati

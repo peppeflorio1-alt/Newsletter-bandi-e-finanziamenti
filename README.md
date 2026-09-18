@@ -190,6 +190,11 @@ Questo richiede un piccolo sforzo in più (5-10 minuti), ma niente codice:
    configurata): se vedi un tag `<input ... value="2026-10-21">`, usa
    `scadenza: "il-selettore-di-quell-input"` insieme a
    `scadenza_attributo: "value"`.
+8. Se il sito mostra anche un'etichetta di stato (es. "Aperto", "Chiuso",
+   "In apertura"), aggiungi `stato: "il-suo-selettore"`: serve alla pagina
+   per mostrare solo i bandi aperti o di prossima apertura (vedi punto 11
+   piu' sotto). Se non lo configuri, la newsletter si basa comunque sulla
+   scadenza per capire se un bando e' ancora valido.
 
 Se questo passaggio ti sembra troppo tecnico, puoi anche semplicemente:
 - mandarmi (a me, Claude, in una prossima conversazione) uno screenshot o
@@ -295,6 +300,25 @@ bandi-newsletter/
 ```
 
 ---
+
+## 11. Come sono organizzate le tab della pagina, e quali bandi vengono mostrati
+
+Su tua richiesta, la pagina ora:
+
+- **Mostra solo i bandi aperti o di prossima apertura.** Un bando scaduto
+  o chiuso sparisce automaticamente dalla pagina (rimane pero' nella
+  "memoria" del progetto per un po', vedi `giorni_di_permanenza` in
+  `config/sources.yaml`, giusto per evitare che ricompaia come "nuovo" se
+  un sito lo ripubblica per errore).
+- **Ha una tab per ciascuna regione/area**, nell'ordine: Emilia-Romagna,
+  Lombardia, Piemonte (le tue tre priorita', sempre per prime se presenti),
+  poi eventuali altre regioni in ordine alfabetico, poi Italia, poi Europa.
+  I bandi di un Comune finiscono nella tab della regione a cui appartiene
+  (si decide con il campo `area:` nella fonte, vedi sotto).
+- Se aggiungi una nuova fonte regionale/comunale in `config/sources.yaml`,
+  ricordati di scrivere `area: "Nome Regione"` (uguale ad altre fonti della
+  stessa regione, per farle finire nella stessa tab). Le fonti di livello
+  `italia` o `europa` non hanno bisogno del campo `area`.
 
 ## 10. Domande frequenti
 

@@ -36,22 +36,28 @@ DIMENSIONE_PAGINA = 50
 MASSIMO_PAGINE = 10  # sicurezza: al massimo 500 elementi per fonte, per evitare loop infiniti
 
 
-def _recupera_scadenza(link: str, base_url: str) -> str | None:
-    """La data di scadenza non e' inclusa nei risultati di ricerca: bisogna
-    aprire la scheda dettagliata di ogni singolo bando per trovarla (campi
-    'scadenza_bando' o, in mancanza, 'scadenza_domande_bando'). Una
-    richiesta in piu' per bando, accettabile per un aggiornamento
-    giornaliero. Se qualcosa va storto, restituisce semplicemente
-    "nessuna scadenza trovata" invece di far fallire tutto lo script."""
+def _recupera_dettaglio(link: str, base_url: str) -> dict:
+    """La data di scadenza e lo stato del bando non sono inclusi nei
+    risultati di ricerca: bisogna aprire la scheda dettagliata di ogni
+    singolo bando per trovarli. Una richiesta in piu' per bando,
+    accettabile per un aggiornamento giornaliero. Se qualcosa va storto,
+    restituisce semplicemente valori vuoti invece di far fallire tutto
+    lo script."""
     try:
         percorso_relativo = link.replace(base_url, "").lstrip("/")
         endpoint_dettaglio = f"{base_url}/++api++/{percorso_relativo}"
         risposta = requests.get(endpoint_dettaglio, headers=INTESTAZIONI, timeout=15)
         risposta.raise_for_status()
         dettaglio = risposta.json()
-        return dettaglio.get("scadenza_bando") or dettaglio.get("scadenza_domande_bando")
+        stato_bando = dettaglio.get("bando_state") or []
+        return {
+            "scadenza": dettaglio.get("scadenza_bando") or dettaglio.get("scadenza_domande_bando"),
+            # bando_state e' una coppia [codice, etichetta]: l'etichetta e'
+            # gia' in italiano leggibile (es. "In corso", "Chiuso").
+            "stato_testo": stato_bando[1] if len(stato_bando) > 1 else None,
+        }
     except (requests.RequestException, ValueError):
-        return None
+        return {"scadenza": None, "stato_testo": None}
 
 
 def fetch(fonte: dict) -> list[dict]:
@@ -105,14 +111,17 @@ def fetch(fonte: dict) -> list[dict]:
             if not titolo or not link:
                 continue
 
+            dettaglio = _recupera_dettaglio(link, base_url)
             risultati.append({
                 "titolo": titolo,
                 "link": link,
                 "riassunto": elemento.get("description") or "",
                 "data_pubblicazione": elemento.get("effective") or elemento.get("Date"),
-                "scadenza": _recupera_scadenza(link, base_url),
+                "scadenza": dettaglio["scadenza"],
+                "stato_testo": dettaglio["stato_testo"],
                 "ente": fonte["nome"],
                 "livello": fonte["livello"],
+                "area": fonte.get("area"),
             })
 
         b_start += DIMENSIONE_PAGINA

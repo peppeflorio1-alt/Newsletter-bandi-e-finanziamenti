@@ -21,6 +21,7 @@ import fetch_rss
 import fetch_plone
 import filters
 import stato
+import stato_bando
 import genera_pagina
 
 PERCORSO_FEED_FINTO = Path(__file__).resolve().parent / "fixtures" / "feed_finto.xml"
@@ -99,32 +100,54 @@ def test_fetch_plone():
     print("OK: fetch_plone.py interpreta correttamente la risposta JSON")
 
 
-def test_pagina_mostra_scadenza():
-    """Verifica che genera_pagina.py trasformi una scadenza in data leggibile
-    e segnali correttamente se e' gia' passata."""
-    bando_futuro = {
-        "titolo": "Bando con scadenza futura", "link": "https://esempio.it/1",
-        "riassunto": "", "ente": "Prova", "livello": "regione",
+def test_pagina_mostra_solo_aperti_e_scadenza():
+    """Verifica che genera_pagina.py:
+    - mostri la scadenza in modo leggibile per un bando ancora aperto
+    - ESCLUDA dalla pagina un bando gia' scaduto (comportamento voluto:
+      la newsletter deve mostrare solo aperti o di prossima apertura)."""
+    bando_aperto = {
+        "titolo": "Bando ancora aperto", "link": "https://esempio.it/1",
+        "riassunto": "", "ente": "Prova", "livello": "regione", "area": "Emilia-Romagna",
         "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
-        "scadenza": "2099-12-31T00:00:00+00:00",
+        "scadenza": "2099-12-31T00:00:00+00:00", "stato_testo": None,
     }
-    bando_scaduto = {
-        "titolo": "Bando gia' scaduto", "link": "https://esempio.it/2",
-        "riassunto": "", "ente": "Prova", "livello": "regione",
+    bando_chiuso = {
+        "titolo": "Bando ormai chiuso", "link": "https://esempio.it/2",
+        "riassunto": "", "ente": "Prova", "livello": "regione", "area": "Emilia-Romagna",
         "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
-        "scadenza": "2020-01-01T00:00:00+00:00",
+        "scadenza": "2020-01-01T00:00:00+00:00", "stato_testo": None,
     }
-    percorso = genera_pagina.genera([bando_futuro, bando_scaduto], "Test scadenze")
+    bando_in_apertura = {
+        "titolo": "Bando di prossima apertura", "link": "https://esempio.it/3",
+        "riassunto": "", "ente": "Prova", "livello": "italia", "area": None,
+        "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
+        "scadenza": None, "stato_testo": "In apertura",
+    }
+
+    percorso = genera_pagina.genera([bando_aperto, bando_chiuso, bando_in_apertura], "Test scadenze")
     contenuto = percorso.read_text(encoding="utf-8")
+
+    assert "Bando ancora aperto" in contenuto
     assert "31/12/2099" in contenuto
-    assert "01/01/2020" in contenuto
-    assert "Scadenza superata" in contenuto
-    print("OK: genera_pagina.py calcola correttamente le scadenze")
+    assert "Bando di prossima apertura" in contenuto
+    assert "In apertura" in contenuto
+    assert "Bando ormai chiuso" not in contenuto, "Un bando scaduto NON deve comparire nella pagina"
+    print("OK: genera_pagina.py mostra solo bandi aperti/in apertura, con scadenza leggibile")
+
+
+def test_stato_bando():
+    assert stato_bando.classifica("Chiuso") == "chiuso"
+    assert stato_bando.classifica("In corso") == "aperto"
+    assert stato_bando.classifica("In apertura") == "prossima_apertura"
+    assert stato_bando.classifica(None) is None
+    assert stato_bando.classifica("testo non riconosciuto") is None
+    print("OK: stato_bando.py classifica correttamente i testi comuni")
 
 
 if __name__ == "__main__":
     bandi_filtrati = test_fetch_rss_e_filtro()
     test_stato_e_pagina(bandi_filtrati)
     test_fetch_plone()
-    test_pagina_mostra_scadenza()
+    test_pagina_mostra_solo_aperti_e_scadenza()
+    test_stato_bando()
     print("\nTutti i test sono passati.")

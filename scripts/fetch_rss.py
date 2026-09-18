@@ -56,8 +56,10 @@ def fetch(fonte: dict) -> list[dict]:
             "riassunto": riassunto,
             "data_pubblicazione": data_pubblicazione,
             "scadenza": None,  # i feed RSS di solito non indicano una scadenza separata
+            "stato_testo": None,
             "ente": fonte["nome"],
             "livello": fonte["livello"],
+            "area": fonte.get("area"),
         })
 
     return risultati

@@ -8,6 +8,8 @@
 #
 #   - nome: "Nome che apparira' nella pagina"
 #     livello: comune | regione | italia | europa | internazionale
+#     area: "Emilia-Romagna"   # SOLO per livello comune/regione: decide in quale
+#                               # tab della pagina finisce (una tab per area)
 #     tipo: rss   oppure   html
 #     url: "https://..."
 #     (se tipo: html, servono anche i "selettori", vedi sotto e il README)
@@ -27,6 +29,7 @@ fonti:
   # ---------------------------------------------------------------------
   - nome: "Regione Emilia-Romagna - Bandi per finanziamenti e contributi"
     livello: regione
+    area: "Emilia-Romagna"
     tipo: plone
     url: "https://www.regione.emilia-romagna.it"
     percorso: "/leggi-atti-bandi/bandi-finanziamenti-contributi"
@@ -45,6 +48,7 @@ fonti:
   # ---------------------------------------------------------------------
   - nome: "Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)"
     livello: regione
+    area: "Lombardia"
     tipo: html
     url: "https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/tematica/cultura-turismo-sport"
     selettori:
@@ -54,9 +58,11 @@ fonti:
       riassunto: ".card-text"
       scadenza: "input.checkCloseDate"
       scadenza_attributo: "value"
+      stato: ".badge"
 
   - nome: "Regione Piemonte - Bandi e finanziamenti"
     livello: regione
+    area: "Piemonte"
     tipo: rss
     url: "https://www.regione.piemonte.it/web/rss/bandi.xml"
     da_verificare: true
@@ -75,6 +81,7 @@ fonti:
   # ---------------------------------------------------------------------
   - nome: "Comune di Grazzanise - Albo bandi (ESEMPIO da configurare)"
     livello: comune
+    area: "Campania"
     tipo: html
     url: "https://www.comune.grazzanise.ce.it/bandi-di-gara-e-concorso"
     da_verificare: true

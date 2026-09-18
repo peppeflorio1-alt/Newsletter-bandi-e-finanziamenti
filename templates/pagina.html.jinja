@@ -88,6 +88,17 @@
     border-radius: 999px;
     margin-left: 0.5rem;
   }
+  .badge-stato {
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
+  .badge-stato.aperto { background: #d8f0e0; color: #1e5c3a; }
+  .badge-stato.prossima_apertura { background: #fdf0d5; color: #8a5a00; }
   .scadenza {
     font-family: sans-serif;
     font-size: 0.8rem;
@@ -116,37 +127,34 @@
 
 <header>
   <h1>{{ titolo_pagina }}</h1>
-  <p>Aggiornata automaticamente il {{ data_aggiornamento }}  ·  {{ numero_totale_bandi }} bandi attivi</p>
+  <p>Aggiornata automaticamente il {{ data_aggiornamento }}  ·  {{ numero_totale_bandi }} bandi aperti o di prossima apertura</p>
 </header>
 
 <main>
   <div class="filtro-livelli" id="filtro-livelli">
     <button class="attivo" onclick="filtra('tutti', this)">Tutti</button>
-    {% for livello in ordine_livelli %}
-      {% if livello in bandi_per_livello %}
-        <button onclick="filtra('{{ livello }}', this)">{{ etichette_livelli[livello] }}</button>
-      {% endif %}
+    {% for tab in ordine_tab %}
+      <button onclick="filtra('{{ tab }}', this)">{{ tab }}</button>
     {% endfor %}
   </div>
 
   {% if numero_totale_bandi == 0 %}
-    <p class="vuoto">Nessun bando trovato al momento. Controlla che le fonti in config/sources.yaml siano corrette.</p>
+    <p class="vuoto">Nessun bando aperto o di prossima apertura al momento. Controlla che le fonti in config/sources.yaml siano corrette.</p>
   {% endif %}
 
-  {% for livello in ordine_livelli %}
-    {% if livello in bandi_per_livello %}
-    <section class="livello" data-livello="{{ livello }}">
-      <h2>{{ etichette_livelli[livello] }}</h2>
-      {% for bando in bandi_per_livello[livello] %}
+  {% for tab in ordine_tab %}
+    <section class="livello" data-livello="{{ tab }}">
+      <h2>{{ tab }}</h2>
+      {% for bando in bandi_per_tab[tab] %}
         <article class="scheda-bando">
+          <div class="badge-stato {{ bando.stato_categoria }}">
+            {{ "In apertura" if bando.stato_categoria == "prossima_apertura" else "Aperto" }}
+          </div>
           <h3><a href="{{ bando.link }}" target="_blank" rel="noopener">{{ bando.titolo }}</a>
             {% if bando.nuovo_oggi %}<span class="badge-nuovo">NUOVO</span>{% endif %}
           </h3>
           {% if bando.scadenza_leggibile %}
-            <div class="scadenza {{ 'passata' if bando.scaduto else 'attiva' }}">
-              {% if bando.scaduto %}Scadenza superata: {{ bando.scadenza_leggibile }}
-              {% else %}Scade il {{ bando.scadenza_leggibile }}{% endif %}
-            </div>
+            <div class="scadenza attiva">Scade il {{ bando.scadenza_leggibile }}</div>
           {% endif %}
           <div class="meta">
             {{ bando.ente }}
@@ -157,7 +165,6 @@
         </article>
       {% endfor %}
     </section>
-    {% endif %}
   {% endfor %}
 </main>
 
