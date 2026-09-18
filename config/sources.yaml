@@ -52,6 +52,8 @@ fonti:
       titolo: ".card-title"
       link: "a.text-decoration-none"
       riassunto: ".card-text"
+      scadenza: "input.checkCloseDate"
+      scadenza_attributo: "value"
 
   - nome: "Regione Piemonte - Bandi e finanziamenti"
     livello: regione
@@ -82,6 +84,8 @@ fonti:
       link: "h2 a"                                       # dentro la scheda: il link (attributo href)
       data: "time"                                       # dentro la scheda: la data (opzionale)
       riassunto: "p.excerpt"                              # dentro la scheda: descrizione (opzionale)
+      scadenza: "span.scadenza"                           # dentro la scheda: la data di scadenza (opzionale)
+      # scadenza_attributo: "value"                       # scommenta se la data e' in un attributo invece che nel testo
 
   # ---------------------------------------------------------------------
   # Funding & Tenders Portal (Unione Europea) - livello europeo.

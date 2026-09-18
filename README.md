@@ -74,6 +74,27 @@ Il modo più semplice, senza usare la riga di comando:
 5. Dopo un paio di minuti, GitHub ti mostrerà l'indirizzo della tua pagina
    (tipo `https://TUONOME.github.io/bandi-newsletter/`). Salvalo nei preferiti.
 
+## 4-bis. Una nota su "aggiornare quando voglio io"
+
+Su tua richiesta, la newsletter **non si aggiorna piu' da sola ogni giorno**:
+si aggiorna solo quando tu lo decidi, dal tab "Actions" (vedi punto 5).
+
+Una precisazione onesta: non e' possibile mettere un pulsante "Aggiorna"
+direttamente sulla pagina pubblicata (quella su GitHub Pages) che avvii lo
+script. Il motivo e' di sicurezza: far partire lo script richiede una
+"chiave" di accesso al tuo repository, e se quella chiave fosse scritta
+dentro la pagina pubblica, chiunque visitasse il sito potrebbe rubarla e
+modificare il tuo repository. Per questo l'aggiornamento manuale si fa dal
+tab "Actions" di GitHub (che vedi solo tu, da loggato).
+
+Per renderlo il piu' comodo possibile, salva nei preferiti anche questo
+indirizzo (sostituendo TUONOME): si apre gia' sulla pagina giusta, cosi'
+ti serve un solo click in piu' per lanciare l'aggiornamento:
+
+```
+https://github.com/TUONOME/bandi-newsletter/actions/workflows/daily.yml
+```
+
 ## 5. Avvia il primo aggiornamento
 
 1. Vai sul tab "Actions" del tuo repository.
@@ -160,6 +181,15 @@ Questo richiede un piccolo sforzo in più (5-10 minuti), ma niente codice:
 6. Apri `config/sources.yaml`, e per quella fonte scrivi `tipo: html` e
    compila la sezione `selettori:` seguendo l'esempio già presente nel file
    (quello del "Comune di Grazzanise").
+7. Se vuoi che compaia anche la **data di scadenza**, ripeti lo stesso
+   procedimento cercando l'elemento che la mostra (spesso vicino a scritte
+   come "Scade il", "Chiude il", "Termine per la presentazione delle
+   domande"): aggiungi `scadenza: "il-suo-selettore"` sotto `selettori:`.
+   A volte la data e' scritta in un campo nascosto della pagina invece che
+   nel testo visibile (e' il caso della Regione Lombardia, gia'
+   configurata): se vedi un tag `<input ... value="2026-10-21">`, usa
+   `scadenza: "il-selettore-di-quell-input"` insieme a
+   `scadenza_attributo: "value"`.
 
 Se questo passaggio ti sembra troppo tecnico, puoi anche semplicemente:
 - mandarmi (a me, Claude, in una prossima conversazione) uno screenshot o

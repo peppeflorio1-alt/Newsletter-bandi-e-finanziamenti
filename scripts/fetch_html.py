@@ -29,6 +29,18 @@ def _testo_o_vuoto(elemento):
     return elemento.get_text(strip=True) if elemento else ""
 
 
+def _valore_o_vuoto(elemento, attributo=None):
+    """Come _testo_o_vuoto, ma se 'attributo' e' indicato legge quell'attributo
+    HTML (es. value="...") invece del testo visibile. Utile per date di
+    scadenza che a volte sono scritte in un campo nascosto piu' facile da
+    leggere del testo mostrato a schermo (es. 'chiude il 21-10-2026')."""
+    if not elemento:
+        return ""
+    if attributo:
+        return elemento.get(attributo, "") or ""
+    return elemento.get_text(strip=True)
+
+
 def fetch(fonte: dict) -> list[dict]:
     """
     Scarica una pagina HTML e ne estrae i bandi secondo i selettori
@@ -58,6 +70,7 @@ def fetch(fonte: dict) -> list[dict]:
         elemento_link = scheda.select_one(selettori.get("link", selettori.get("titolo", "")))
         elemento_data = scheda.select_one(selettori.get("data", "")) if selettori.get("data") else None
         elemento_riassunto = scheda.select_one(selettori.get("riassunto", "")) if selettori.get("riassunto") else None
+        elemento_scadenza = scheda.select_one(selettori.get("scadenza", "")) if selettori.get("scadenza") else None
 
         titolo = _testo_o_vuoto(elemento_titolo)
         link_relativo = elemento_link.get("href") if elemento_link else None
@@ -68,11 +81,14 @@ def fetch(fonte: dict) -> list[dict]:
         # Trasforma un link relativo (es. "/bandi/123") in un link completo
         link = urljoin(fonte["url"], link_relativo)
 
+        scadenza = _valore_o_vuoto(elemento_scadenza, selettori.get("scadenza_attributo")) or None
+
         risultati.append({
             "titolo": titolo,
             "link": link,
             "riassunto": _testo_o_vuoto(elemento_riassunto),
             "data_pubblicazione": _testo_o_vuoto(elemento_data) or None,
+            "scadenza": scadenza,
             "ente": fonte["nome"],
             "livello": fonte["livello"],
         })

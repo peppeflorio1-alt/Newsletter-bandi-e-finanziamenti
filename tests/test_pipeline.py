@@ -92,11 +92,39 @@ def test_fetch_plone():
     assert len(bandi) == 1, f"Atteso 1 bando, trovati {len(bandi)}"
     assert bandi[0]["titolo"] == "Bando cultura di prova"
     assert bandi[0]["link"] == "https://esempio-regione.it/bandi/bando-cultura-di-prova"
+    # la scadenza va recuperata con una seconda richiesta (mockata anch'essa):
+    # qui non la mocked separatamente quindi ci si aspetta un fallimento
+    # "silenzioso" (None), che e' il comportamento corretto in caso di errore.
+    assert bandi[0]["scadenza"] is None
     print("OK: fetch_plone.py interpreta correttamente la risposta JSON")
+
+
+def test_pagina_mostra_scadenza():
+    """Verifica che genera_pagina.py trasformi una scadenza in data leggibile
+    e segnali correttamente se e' gia' passata."""
+    bando_futuro = {
+        "titolo": "Bando con scadenza futura", "link": "https://esempio.it/1",
+        "riassunto": "", "ente": "Prova", "livello": "regione",
+        "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
+        "scadenza": "2099-12-31T00:00:00+00:00",
+    }
+    bando_scaduto = {
+        "titolo": "Bando gia' scaduto", "link": "https://esempio.it/2",
+        "riassunto": "", "ente": "Prova", "livello": "regione",
+        "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
+        "scadenza": "2020-01-01T00:00:00+00:00",
+    }
+    percorso = genera_pagina.genera([bando_futuro, bando_scaduto], "Test scadenze")
+    contenuto = percorso.read_text(encoding="utf-8")
+    assert "31/12/2099" in contenuto
+    assert "01/01/2020" in contenuto
+    assert "Scadenza superata" in contenuto
+    print("OK: genera_pagina.py calcola correttamente le scadenze")
 
 
 if __name__ == "__main__":
     bandi_filtrati = test_fetch_rss_e_filtro()
     test_stato_e_pagina(bandi_filtrati)
     test_fetch_plone()
+    test_pagina_mostra_scadenza()
     print("\nTutti i test sono passati.")

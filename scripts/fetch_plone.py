@@ -36,6 +36,24 @@ DIMENSIONE_PAGINA = 50
 MASSIMO_PAGINE = 10  # sicurezza: al massimo 500 elementi per fonte, per evitare loop infiniti
 
 
+def _recupera_scadenza(link: str, base_url: str) -> str | None:
+    """La data di scadenza non e' inclusa nei risultati di ricerca: bisogna
+    aprire la scheda dettagliata di ogni singolo bando per trovarla (campi
+    'scadenza_bando' o, in mancanza, 'scadenza_domande_bando'). Una
+    richiesta in piu' per bando, accettabile per un aggiornamento
+    giornaliero. Se qualcosa va storto, restituisce semplicemente
+    "nessuna scadenza trovata" invece di far fallire tutto lo script."""
+    try:
+        percorso_relativo = link.replace(base_url, "").lstrip("/")
+        endpoint_dettaglio = f"{base_url}/++api++/{percorso_relativo}"
+        risposta = requests.get(endpoint_dettaglio, headers=INTESTAZIONI, timeout=15)
+        risposta.raise_for_status()
+        dettaglio = risposta.json()
+        return dettaglio.get("scadenza_bando") or dettaglio.get("scadenza_domande_bando")
+    except (requests.RequestException, ValueError):
+        return None
+
+
 def fetch(fonte: dict) -> list[dict]:
     risultati = []
 
@@ -92,6 +110,7 @@ def fetch(fonte: dict) -> list[dict]:
                 "link": link,
                 "riassunto": elemento.get("description") or "",
                 "data_pubblicazione": elemento.get("effective") or elemento.get("Date"),
+                "scadenza": _recupera_scadenza(link, base_url),
                 "ente": fonte["nome"],
                 "livello": fonte["livello"],
             })

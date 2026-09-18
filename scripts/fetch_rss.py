@@ -55,6 +55,7 @@ def fetch(fonte: dict) -> list[dict]:
             "link": link,
             "riassunto": riassunto,
             "data_pubblicazione": data_pubblicazione,
+            "scadenza": None,  # i feed RSS di solito non indicano una scadenza separata
             "ente": fonte["nome"],
             "livello": fonte["livello"],
         })

@@ -8,6 +8,7 @@ la pagina che GitHub Pages pubblica online.
 
 from datetime import datetime
 from pathlib import Path
+from dateutil import parser as analizzatore_date
 from jinja2 import Environment, FileSystemLoader
 
 CARTELLA_TEMPLATE = Path(__file__).resolve().parent.parent / "templates"
@@ -23,11 +24,28 @@ ETICHETTE_LIVELLI = {
 }
 
 
+def _leggibile_e_scaduta(valore_scadenza) -> tuple[str | None, bool]:
+    """Trasforma una scadenza (che puo' arrivare in formati diversi a
+    seconda della fonte) in una data leggibile tipo 21/10/2026, e dice
+    anche se quella data e' gia' passata rispetto ad oggi."""
+    if not valore_scadenza:
+        return None, False
+    try:
+        data = analizzatore_date.parse(str(valore_scadenza))
+    except (ValueError, TypeError, OverflowError):
+        return None, False
+    scaduta = data.date() < datetime.now().date()
+    return data.strftime("%d/%m/%Y"), scaduta
+
+
 def genera(bandi: list[dict], titolo_pagina: str) -> Path:
     """
     Raggruppa i bandi per livello, ordina per data e scrive docs/index.html.
     Ritorna il percorso del file scritto.
     """
+    for bando in bandi:
+        bando["scadenza_leggibile"], bando["scaduto"] = _leggibile_e_scaduta(bando.get("scadenza"))
+
     bandi_per_livello: dict[str, list[dict]] = {}
     for bando in bandi:
         bandi_per_livello.setdefault(bando["livello"], []).append(bando)
