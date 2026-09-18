@@ -30,7 +30,18 @@ includere qualche pagina che non e' un bando vero).
 
 import requests
 
-INTESTAZIONI = {"Content-Type": "application/json", "Accept": "application/json"}
+INTESTAZIONI = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    # Alcuni siti pubblici rifiutano le richieste che non sembrano provenire
+    # da un browser vero (bloccano lo "User-Agent" di default di Python).
+    # Questa intestazione risolve la maggior parte dei casi.
+    "User-Agent": (
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) "
+        "Chrome/124.0 Safari/537.36"
+    ),
+}
 
 DIMENSIONE_PAGINA = 50
 MASSIMO_PAGINE = 10  # sicurezza: al massimo 500 elementi per fonte, per evitare loop infiniti
@@ -92,7 +103,8 @@ def fetch(fonte: dict) -> list[dict]:
             risposta = requests.post(endpoint, json=corpo, headers=INTESTAZIONI, timeout=20)
             risposta.raise_for_status()
         except requests.RequestException as errore:
-            print(f"[ATTENZIONE] Impossibile leggere '{fonte['nome']}' ({errore})")
+            codice = getattr(getattr(errore, "response", None), "status_code", "sconosciuto")
+            print(f"[ATTENZIONE] Impossibile leggere '{fonte['nome']}' (codice HTTP: {codice}, dettaglio: {errore})")
             break
 
         dati = risposta.json()
