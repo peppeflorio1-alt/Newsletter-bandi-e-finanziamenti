@@ -17,10 +17,16 @@ fonti_da_configurare:
   nome: Funding & Tenders Portal
   sito: https://ec.europa.eu/info/funding-tenders/opportunities/portal
   livello: europa
+  nota: 'Verificato il 18/09/2026: ha un''API pubblica documentata (api.tech.ec.europa.eu/search-api)
+    ma nei test dal vivo i filtri per tipo/stato non hanno funzionato in modo affidabile nonostante il
+    formato corretto (Form Data, non JSON puro). Richiede ulteriore lavoro di reverse engineering, da
+    riprendere con piu'' tempo a disposizione.'
 - numero: 2
   nome: Erasmus+ Italia (Agenzia Nazionale/INAPP-ANG)
   sito: https://www.erasmusplus.it
   livello: europa
+  nota: 'GIA'' ATTIVATA in sources.yaml (18/09/2026, tipo: wordpress, tipo_contenuto: posts - notizie
+    generali, non solo bandi)'
 - numero: 3
   nome: Corpo europeo di solidarietà
   sito: https://europa.eu/youth/solidarity_it
@@ -37,6 +43,8 @@ fonti_da_configurare:
   nome: EACEA
   sito: https://eacea.ec.europa.eu
   livello: europa
+  nota: 'Verificato il 18/09/2026: EACEA pubblica i suoi bandi solo sul Funding & Tenders Portal (vedi
+    fonte 1), nessun database separato proprio.'
 - numero: 7
   nome: Interreg Europe
   sito: https://www.interregeurope.eu

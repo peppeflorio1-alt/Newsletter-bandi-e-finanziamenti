@@ -88,6 +88,26 @@ fonti:
     da_verificare: true
 
   # ---------------------------------------------------------------------
+  # VERIFICATA IL 18/09/2026: e' il blog ufficiale dell'Agenzia Nazionale
+  # Erasmus+ Italia (stessa piattaforma WordPress di Cariplo/Carisbo).
+  # NOTA IMPORTANTE: qui dentro ci sono notizie in generale, non solo
+  # bandi/scadenze (eventi, resoconti, storie di partecipanti...): il
+  # filtro per parole chiave in questo file aiuta a scremare, ma aspettati
+  # qualche articolo non strettamente "un bando" nella tab Europa. Ho
+  # provato anche a leggere la pagina ufficiale con TUTTE le scadenze
+  # Erasmus+ (una tabella molto completa, vedi
+  # www.erasmusplus.it/programma/scadenze/), ma ha una struttura interna
+  # troppo particolare per essere letta in modo affidabile in automatico:
+  # se vuoi, in un prossimo giro possiamo riprovare con piu' tempo, o
+  # aprirla manualmente ogni tanto per un controllo incrociato.
+  # ---------------------------------------------------------------------
+  - nome: "Erasmus+ Italia - News e opportunita'"
+    livello: europa
+    tipo: wordpress
+    url: "https://www.erasmusplus.it"
+    tipo_contenuto: "posts"
+
+  # ---------------------------------------------------------------------
   # VERIFICATA IL 18/09/2026: stessa piattaforma e stesso limite di
   # Fondazione Cariplo qui sopra (WordPress, niente scadenza strutturata).
   # ---------------------------------------------------------------------
