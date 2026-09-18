@@ -1,0 +1,33 @@
+name: Aggiorna newsletter bandi ogni giorno
+
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scarica il codice del repository
+        uses: actions/checkout@v4
+
+      - name: Prepara Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installa le librerie necessarie
+        run: pip install -r requirements.txt
+
+      - name: Esegui lo script che raccoglie i bandi e genera la pagina
+        run: python scripts/main.py
+
+      - name: Salva il risultato nel repository (pagina + memoria)
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Aggiornamento automatico bandi - ${{ github.run_id }}"
+          file_pattern: "docs/index.html data/stato.json"
