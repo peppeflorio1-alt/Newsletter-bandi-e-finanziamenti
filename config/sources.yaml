@@ -22,19 +22,36 @@
 
 fonti:
   # ---------------------------------------------------------------------
-  # ESEMPIO: fonte di tipo RSS (il tipo piu' semplice, quasi mai da toccare)
+  # VERIFICATA IL 18/09/2026: questo sito usa Plone (vedi fetch_plone.py).
+  # Trovati 67 bandi reali con questa configurazione.
   # ---------------------------------------------------------------------
-  - nome: "Regione Emilia-Romagna - Bandi e finanziamenti"
+  - nome: "Regione Emilia-Romagna - Bandi per finanziamenti e contributi"
     livello: regione
-    tipo: rss
-    url: "https://www.regione.emilia-romagna.it/rss/bandi-e-finanziamenti"
-    da_verificare: true
+    tipo: plone
+    url: "https://www.regione.emilia-romagna.it"
+    percorso: "/leggi-atti-bandi/bandi-finanziamenti-contributi"
+    tipi_contenuto: ["Bando"]
 
-  - nome: "Regione Lombardia - Bandi"
+  # ---------------------------------------------------------------------
+  # VERIFICATA IL 18/09/2026, con un limite da conoscere: questa e' la
+  # sezione tematica "Cultura, Turismo e Sport" del portale, gia' filtrata
+  # per argomento. Il sito pero' NON offre un feed dati diretto: leggiamo
+  # solo la PRIMA PAGINA di risultati (l'elenco completo usa una modalita'
+  # di navigazione che non e' possibile leggere in modo automatico e
+  # affidabile). In pratica: i bandi che compaiono in prima pagina sul
+  # sito compariranno nella tua newsletter; quelli piu' indietro nelle
+  # pagine successive no. Se in futuro vuoi, possiamo rivedere questo
+  # limite insieme.
+  # ---------------------------------------------------------------------
+  - nome: "Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)"
     livello: regione
-    tipo: rss
-    url: "https://www.regione.lombardia.it/wps/wcm/connect/rss/bandi"
-    da_verificare: true
+    tipo: html
+    url: "https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/tematica/cultura-turismo-sport"
+    selettori:
+      contenitore_elemento: "div.card-wrapper.card-space"
+      titolo: ".card-title"
+      link: "a.text-decoration-none"
+      riassunto: ".card-text"
 
   - nome: "Regione Piemonte - Bandi e finanziamenti"
     livello: regione

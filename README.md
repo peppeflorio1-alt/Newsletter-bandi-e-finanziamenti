@@ -166,6 +166,18 @@ Se questo passaggio ti sembra troppo tecnico, puoi anche semplicemente:
   il link della pagina bandi che vuoi aggiungere, e ti preparo io la riga
   di configurazione esatta da incollare.
 
+### Caso C-bis — Il sito usa Plone (molto comune per Regioni/Comuni)
+
+Alcuni siti pubblici italiani (tra cui Regione Emilia-Romagna, gia' attivata
+in questo progetto) sono costruiti con una piattaforma chiamata **Plone**
+e offrono i dati anche in JSON, molto piu' affidabile dell'HTML. Il segnale
+per riconoscerla: apri gli strumenti sviluppatore del browser (F12) ->
+scheda "Rete"/"Network", ricarica la pagina bandi, e cerca richieste con
+`++api++` nell'indirizzo. Se ci sono, usa `tipo: plone` invece di `html` —
+i dettagli su come scrivere la fonte sono spiegati all'inizio del file
+`scripts/fetch_plone.py`. In una prossima conversazione posso anche
+verificarlo io per te, se mi dai il link della pagina.
+
 ### Caso C — Un sito blocca le richieste automatiche
 
 Alcuni siti pubblici hanno protezioni anti-robot piuttosto aggressive

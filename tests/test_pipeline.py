@@ -15,7 +15,10 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "scripts"))
 
+from unittest.mock import patch, MagicMock
+
 import fetch_rss
+import fetch_plone
 import filters
 import stato
 import genera_pagina
@@ -54,7 +57,46 @@ def test_stato_e_pagina(bandi_filtrati):
     print(f"OK: pagina generata correttamente in {percorso}")
 
 
+def test_fetch_plone():
+    """Verifica fetch_plone.py con una risposta finta (stessa forma di quella
+    osservata davvero su regione.emilia-romagna.it), senza usare la rete."""
+    risposta_finta = {
+        "items_total": 1,
+        "items": [
+            {
+                "title": "Bando cultura di prova",
+                "@id": "https://esempio-regione.it/bandi/bando-cultura-di-prova",
+                "description": "Descrizione di prova per il bando culturale.",
+                "effective": "2026-05-20T13:52:23+00:00",
+                "@type": "Bando",
+            }
+        ],
+    }
+
+    fonte_finta = {
+        "nome": "Fonte Plone di prova",
+        "livello": "regione",
+        "url": "https://esempio-regione.it",
+        "percorso": "/bandi",
+        "tipi_contenuto": ["Bando"],
+    }
+
+    with patch("fetch_plone.requests.post") as mock_post:
+        mock_risposta = MagicMock()
+        mock_risposta.json.return_value = risposta_finta
+        mock_risposta.raise_for_status.return_value = None
+        mock_post.return_value = mock_risposta
+
+        bandi = fetch_plone.fetch(fonte_finta)
+
+    assert len(bandi) == 1, f"Atteso 1 bando, trovati {len(bandi)}"
+    assert bandi[0]["titolo"] == "Bando cultura di prova"
+    assert bandi[0]["link"] == "https://esempio-regione.it/bandi/bando-cultura-di-prova"
+    print("OK: fetch_plone.py interpreta correttamente la risposta JSON")
+
+
 if __name__ == "__main__":
     bandi_filtrati = test_fetch_rss_e_filtro()
     test_stato_e_pagina(bandi_filtrati)
+    test_fetch_plone()
     print("\nTutti i test sono passati.")

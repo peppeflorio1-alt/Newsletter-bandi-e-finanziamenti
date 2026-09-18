@@ -22,6 +22,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import fetch_rss
 import fetch_html
+import fetch_plone
 import filters
 import stato
 import genera_pagina
@@ -43,6 +44,8 @@ def raccogli_bandi_da_tutte_le_fonti(fonti: list[dict]) -> list[dict]:
                 trovati = fetch_rss.fetch(fonte)
             elif fonte["tipo"] == "html":
                 trovati = fetch_html.fetch(fonte)
+            elif fonte["tipo"] == "plone":
+                trovati = fetch_plone.fetch(fonte)
             else:
                 print(f"[ATTENZIONE] Tipo di fonte sconosciuto '{fonte['tipo']}' per {fonte['nome']}: saltata.")
                 continue

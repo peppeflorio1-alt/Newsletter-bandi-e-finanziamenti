@@ -1,474 +1,463 @@
 # =========================================================================
-# CATALOGO DI 100 FONTI DA ATTIVARE (elenco fornito da Peppe)
+# CATALOGO DI 100 FONTI DA ATTIVARE (elenco fornito da Peppe, indirizzi con
+# protocollo https:// normalizzato il 18/09/2026)
 # =========================================================================
 # Questo file NON viene letto dallo script (main.py legge solo
 # config/sources.yaml). E' un elenco di partenza: per ogni fonte che vuoi
-# attivare davvero, segui il paragrafo 6 del README (trovare il feed RSS o
-# i selettori HTML) e poi SPOSTA quella voce dentro config/sources.yaml,
-# nel formato richiesto (tipo, url completo, eventuali selettori).
+# attivare davvero, segui il paragrafo 6 del README (trovare il feed RSS,
+# l'archivio dati o i selettori HTML) e poi SPOSTA quella voce dentro
+# config/sources.yaml, nel formato richiesto.
 #
-# Nessuno di questi indirizzi e' stato verificato automaticamente: sono
-# gli indirizzi base dei siti, non ancora la pagina/il feed specifico dei
-# bandi. 'sito' e' il dominio di partenza da cui cercare la sezione bandi.
+# 'sito' e' l'indirizzo base del sito (gia' con https://): non e' ancora
+# la pagina/il feed specifico dei bandi, che va cercato dentro il sito.
 # =========================================================================
 
 fonti_da_configurare:
 - numero: 1
   nome: Funding & Tenders Portal
-  sito: ec.europa.eu/info/funding-tenders/opportunities/portal
+  sito: https://ec.europa.eu/info/funding-tenders/opportunities/portal
   livello: europa
 - numero: 2
   nome: Erasmus+ Italia (Agenzia Nazionale/INAPP-ANG)
-  sito: erasmusplus.it
+  sito: https://www.erasmusplus.it
   livello: europa
 - numero: 3
-  nome: Corpo europeo di solidarieta'
-  sito: europa.eu/youth/solidarity_it
+  nome: Corpo europeo di solidarietà
+  sito: https://europa.eu/youth/solidarity_it
   livello: europa
 - numero: 4
-  nome: Programma CERV (Cittadini, uguaglianza, diritti e valori)
-  sito: ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/cerv
+  nome: Programma CERV
+  sito: https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/programmes/cerv
   livello: europa
 - numero: 5
   nome: Europa Creativa
-  sito: culture.ec.europa.eu/creative-europe
+  sito: https://culture.ec.europa.eu/creative-europe
   livello: europa
 - numero: 6
   nome: EACEA
-  sito: eacea.ec.europa.eu
+  sito: https://eacea.ec.europa.eu
   livello: europa
 - numero: 7
   nome: Interreg Europe
-  sito: interregeurope.eu
+  sito: https://www.interregeurope.eu
   livello: europa
 - numero: 8
   nome: Interreg Central Europe
-  sito: interreg-central.eu
+  sito: https://www.interreg-central.eu
   livello: europa
 - numero: 9
   nome: Interreg Alpine Space
-  sito: alpine-space.eu
+  sito: https://www.alpine-space.eu
   livello: europa
 - numero: 10
   nome: Programma LIFE
-  sito: cinea.ec.europa.eu/programmes/life_en
+  sito: https://cinea.ec.europa.eu/programmes/life_en
   livello: europa
 - numero: 11
   nome: Fondi Strutturali e di Investimento Europei (SIE)
-  sito: opencoesione.gov.it
+  sito: https://opencoesione.gov.it
   livello: europa
 - numero: 12
   nome: EU4Youth / EU Neighbours
-  sito: euneighbours.eu
+  sito: https://euneighbours.eu
   livello: europa
 - numero: 13
-  nome: Ministero della Cultura
-  sito: cultura.gov.it
+  nome: Ministero della Cultura (sezione bandi)
+  sito: https://cultura.gov.it
   livello: italia
-  nota: sezione bandi
 - numero: 14
   nome: Ministero del Lavoro e delle Politiche Sociali
-  sito: lavoro.gov.it
+  sito: https://www.lavoro.gov.it
   livello: italia
 - numero: 15
   nome: Dipartimento per le Politiche Giovanili e il Servizio Civile Universale
-  sito: politichegiovanili.gov.it
+  sito: https://www.politichegiovanili.gov.it
   livello: italia
 - numero: 16
   nome: Agenzia Nazionale Giovani
-  sito: agenziagiovani.it
+  sito: https://www.agenziagiovani.it
   livello: italia
 - numero: 17
-  nome: Sport e Salute S.p.A.
-  sito: sportesalute.eu
+  nome: Sport e Salute S.p.A. (impiantistica sportiva)
+  sito: https://www.sportesalute.eu
   livello: italia
-  nota: impiantistica sportiva
 - numero: 18
   nome: Ministero dell'Istruzione e del Merito
-  sito: mim.gov.it
+  sito: https://www.mim.gov.it
   livello: italia
 - numero: 19
   nome: Invitalia
-  sito: invitalia.it
+  sito: https://www.invitalia.it
   livello: italia
 - numero: 20
   nome: Presidenza del Consiglio - Dipartimento Politiche Europee
-  sito: politicheeuropee.gov.it
+  sito: https://politicheeuropee.gov.it
   livello: italia
 - numero: 21
   nome: Servizio Civile Universale
-  sito: serviziocivile.gov.it
+  sito: https://www.scanci.it
   livello: italia
+  sito_alternativo: https://www.serviziocivile.gov.it
 - numero: 22
   nome: Fondo Nazionale Politiche Sociali (FNPS)
-  sito: lavoro.gov.it
+  sito: https://www.lavoro.gov.it
   livello: italia
-  nota: tramite ministero lavoro
+  nota: gestito tramite Ministero del Lavoro, nessun portale dedicato distinto
 - numero: 23
   nome: MiC - Direzione Generale Educazione, Ricerca e Istituti Culturali
-  sito: cultura.gov.it
+  sito: https://cultura.gov.it
   livello: italia
+  nota: sezione del sito del Ministero della Cultura, nessun dominio dedicato
 - numero: 24
   nome: PNRR
-  sito: italiadomani.gov.it
+  sito: https://www.italiadomani.gov.it
   livello: italia
 - numero: 25
-  nome: Ministero Ambiente / Sogesid
-  sito: mase.gov.it
+  nome: Sogesid / Ministero Ambiente (strutture ambientali no profit)
+  sito: https://www.mase.gov.it
   livello: italia
-  nota: per strutture ambientali no profit
 - numero: 26
   nome: Regione Emilia-Romagna - Bandi e finanziamenti
-  sito: bandi.regione.emilia-romagna.it
+  sito: https://bandi.regione.emilia-romagna.it
   livello: regione
   area: Emilia-Romagna
+  nota: 'GIA'' ATTIVATA in sources.yaml (18/09/2026, tipo: plone)'
 - numero: 27
   nome: Assemblea Legislativa Emilia-Romagna
-  sito: assemblea.emr.it
+  sito: https://www.assemblea.emr.it
   livello: regione
   area: Emilia-Romagna
-  nota: bandi partecipazione
 - numero: 28
   nome: ER Giovani
-  sito: ergiovani.regione.emilia-romagna.it
+  sito: https://ergiovani.regione.emilia-romagna.it
   livello: regione
   area: Emilia-Romagna
 - numero: 29
   nome: Fondazione Cassa di Risparmio in Bologna (Carisbo)
-  sito: fondazionecarisbo.it
+  sito: https://www.fondazionecarisbo.it
   livello: regione
   area: Emilia-Romagna
 - numero: 30
   nome: Fondazione Cassa di Risparmio di Modena
-  sito: fondazione-crmo.it
+  sito: https://www.fondazione-crmo.it
   livello: regione
   area: Emilia-Romagna
 - numero: 31
   nome: Fondazione Cassa di Risparmio di Parma
-  sito: fondazionecrparma.it
+  sito: https://www.fondazionecrparma.it
   livello: regione
   area: Emilia-Romagna
 - numero: 32
   nome: Fondazione del Monte di Bologna e Ravenna
-  sito: fondazionedelmonte.it
+  sito: https://www.fondazionedelmonte.it
   livello: regione
   area: Emilia-Romagna
 - numero: 33
-  nome: Fondazione Cassa dei Risparmi di Forli'
-  sito: fondazionecarisforli.it
+  nome: Fondazione Cassa dei Risparmi di Forlì
+  sito: https://www.fondazionecarisforli.it
   livello: regione
   area: Emilia-Romagna
 - numero: 34
   nome: Fondazione Cassa di Risparmio di Cesena
-  sito: fondazionecarisp-cesena.it
+  sito: https://www.fondazionecarisp-cesena.it
   livello: regione
   area: Emilia-Romagna
 - numero: 35
   nome: Fondazione Cassa di Risparmio di Ravenna
-  sito: fondazionecassaravenna.it
+  sito: https://www.fondazionecassaravenna.it
   livello: regione
   area: Emilia-Romagna
 - numero: 36
   nome: Comune di Bologna - Bandi e avvisi
-  sito: comune.bologna.it
+  sito: https://www.comune.bologna.it
   livello: comune
   area: Emilia-Romagna
 - numero: 37
-  nome: Citta' Metropolitana di Bologna
-  sito: cittametropolitana.bo.it
+  nome: Città Metropolitana di Bologna
+  sito: https://www.cittametropolitana.bo.it
   livello: regione
   area: Emilia-Romagna
 - numero: 38
   nome: CSV Emilia-Romagna
-  sito: csvterredipianura.it
+  sito: https://csvterredipianura.it
   livello: regione
   area: Emilia-Romagna
-  nota: rete regionale, anche volontariamo.it
+  sito_alternativo: https://www.volontariamo.it
 - numero: 39
   nome: Regione Lombardia - Bandi online
-  sito: bandi.regione.lombardia.it
+  sito: https://bandi.regione.lombardia.it
   livello: regione
   area: Lombardia
+  nota: 'GIA'' ATTIVATA in sources.yaml (18/09/2026, tipo: html, solo prima pagina)'
 - numero: 40
   nome: Fondazione Cariplo
-  sito: fondazionecariplo.it
+  sito: https://www.fondazionecariplo.it
   livello: regione
   area: Lombardia
 - numero: 41
   nome: Fondazione Comunitaria Milano
-  sito: fondazionecomunitariamilano.org
+  sito: https://www.fondazionecomunitariamilano.org
   livello: regione
   area: Lombardia
 - numero: 42
   nome: Fondazione Banca del Monte di Lombardia
-  sito: fbml.it
+  sito: https://www.fbml.it
   livello: regione
   area: Lombardia
 - numero: 43
   nome: Comune di Milano - Bandi e avvisi
-  sito: comune.milano.it
+  sito: https://www.comune.milano.it
   livello: comune
   area: Lombardia
 - numero: 44
-  nome: Citta' Metropolitana di Milano
-  sito: cittametropolitana.mi.it
+  nome: Città Metropolitana di Milano
+  sito: https://www.cittametropolitana.mi.it
   livello: regione
   area: Lombardia
 - numero: 45
   nome: Fondazione Peppino Vismara
-  sito: fondazionevismara.org
+  sito: https://www.fondazionevismara.org
   livello: regione
   area: Lombardia
 - numero: 46
-  nome: Eupolis Lombardia
-  sito: eupolis.regione.lombardia.it
+  nome: Éupolis Lombardia
+  sito: https://eupolis.regione.lombardia.it
   livello: regione
   area: Lombardia
 - numero: 47
   nome: Fondazione Comunitaria della Provincia di Lecco
-  sito: fondazionelecco.org
+  sito: https://www.fondazionelecco.org
   livello: regione
   area: Lombardia
 - numero: 48
-  nome: Fondazione della Comunita' Bresciana
-  sito: fondazionecomunitabresciana.it
+  nome: Fondazione della Comunità Bresciana
+  sito: https://www.fondazionecomunitabresciana.it
   livello: regione
   area: Lombardia
 - numero: 49
   nome: Fondazione Comunitaria del Varesotto
-  sito: fondazionevarese.it
+  sito: https://www.fondazionevarese.it
   livello: regione
   area: Lombardia
 - numero: 50
   nome: Fondazione Banca Popolare di Milano (Fondazione BPM)
-  sito: fondazionebpm.it
+  sito: https://www.fondazionebpm.it
   livello: regione
   area: Lombardia
 - numero: 51
-  nome: Fondazione Provinciale della Comunita' Comasca
-  sito: fondazionecomunitacomasca.it
+  nome: Fondazione Provinciale della Comunità Comasca
+  sito: https://www.fondazionecomunitacomasca.it
   livello: regione
   area: Lombardia
 - numero: 52
   nome: Regione Piemonte - Bandi Piemonte
-  sito: bandipiemonte.it
+  sito: https://www.bandipiemonte.it
   livello: regione
   area: Piemonte
 - numero: 53
   nome: Compagnia di San Paolo
-  sito: compagniadisanpaolo.it
+  sito: https://www.compagniadisanpaolo.it
   livello: regione
   area: Piemonte
 - numero: 54
   nome: Fondazione CRT
-  sito: fondazionecrt.it
+  sito: https://www.fondazionecrt.it
   livello: regione
   area: Piemonte
 - numero: 55
   nome: Fondazione CRC (Cuneo)
-  sito: fondazionecrc.it
+  sito: https://www.fondazionecrc.it
   livello: regione
   area: Piemonte
 - numero: 56
   nome: Fondazione Cassa di Risparmio di Asti (Fondazione CRAsti)
-  sito: fondazionecrasti.it
+  sito: https://www.fondazionecrasti.it
   livello: regione
   area: Piemonte
 - numero: 57
   nome: Fondazione Cassa di Risparmio di Alessandria
-  sito: fondazionecralessandria.it
+  sito: https://www.fondazionecralessandria.it
   livello: regione
   area: Piemonte
 - numero: 58
   nome: Fondazione Cassa di Risparmio di Biella
-  sito: fondazionecrbiella.it
+  sito: https://www.fondazionecrbiella.it
   livello: regione
   area: Piemonte
 - numero: 59
   nome: Fondazione Cassa di Risparmio di Fossano
-  sito: fondazionecrfossano.it
+  sito: https://www.fondazionecrfossano.it
   livello: regione
   area: Piemonte
 - numero: 60
   nome: Fondazione Cassa di Risparmio di Savigliano
-  sito: fondazionecrsavigliano.it
+  sito: https://www.fondazionecrsavigliano.it
   livello: regione
   area: Piemonte
 - numero: 61
-  nome: Citta' di Torino - Bandi e avvisi
-  sito: comune.torino.it
+  nome: Città di Torino - Bandi e avvisi
+  sito: https://www.comune.torino.it
   livello: comune
   area: Piemonte
 - numero: 62
-  nome: Citta' Metropolitana di Torino
-  sito: cittametropolitana.torino.it
+  nome: Città Metropolitana di Torino
+  sito: https://www.cittametropolitana.torino.it
   livello: regione
   area: Piemonte
 - numero: 63
   nome: Fondazione Sviluppo e Crescita CRT
-  sito: fondazionecrt.it/sviluppoecrescita
+  sito: https://www.fondazionecrt.it/sviluppoecrescita
   livello: regione
   area: Piemonte
 - numero: 64
   nome: Ires Piemonte
-  sito: ires.piemonte.it
+  sito: https://www.ires.piemonte.it
   livello: regione
   area: Piemonte
 - numero: 65
   nome: ACRI (indice fondazioni di origine bancaria)
-  sito: acri.it
+  sito: https://www.acri.it
   livello: italia
 - numero: 66
   nome: Fondazione con il Sud
-  sito: fondazioneconilsud.it
+  sito: https://www.fondazioneconilsud.it
   livello: italia
 - numero: 67
   nome: Fondazione Vodafone Italia
-  sito: fondazionevodafone.it
+  sito: https://www.fondazionevodafone.it
   livello: italia
 - numero: 68
   nome: Fondazione Enel Cuore
-  sito: fondazioneenelcuore.it
+  sito: https://www.fondazioneenelcuore.it
   livello: italia
 - numero: 69
   nome: Fondazione Snam
-  sito: fondazionesnam.it
+  sito: https://www.fondazionesnam.it
   livello: italia
 - numero: 70
   nome: Fondazione TIM
-  sito: fondazionetim.it
+  sito: https://www.fondazionetim.it
   livello: italia
 - numero: 71
   nome: Fondazione Bracco
-  sito: fondazionebracco.com
+  sito: https://www.fondazionebracco.com
   livello: italia
 - numero: 72
   nome: Fondazione Deutsche Bank Italia
-  sito: deutsche-bank.it/fondazione
+  sito: https://www.deutsche-bank.it/fondazione
   livello: italia
 - numero: 73
   nome: Intesa Sanpaolo - Progetto Cultura/Insieme x il Sociale
-  sito: group.intesasanpaolo.com
+  sito: https://group.intesasanpaolo.com
   livello: italia
 - numero: 74
   nome: UniCredit Foundation
-  sito: unicreditfoundation.org
+  sito: https://www.unicreditfoundation.org
   livello: italia
 - numero: 75
   nome: Fondazione Bulgari
-  sito: fondazionebulgari.org
+  sito: https://www.fondazionebulgari.org
   livello: italia
 - numero: 76
-  nome: Fondazione Prosolidar
-  sito: fondazioneprosolidar.it
+  nome: Fondazione Prosolidar (settore energia)
+  sito: https://www.fondazioneprosolidar.it
   livello: italia
-  nota: settore energia
 - numero: 77
   nome: Italia Non Profit
-  sito: italianonprofit.it
+  sito: https://www.italianonprofit.it
   livello: italia
-  nota: sezione bandi
 - numero: 78
   nome: Vita.it
-  sito: vita.it
+  sito: https://www.vita.it
   livello: italia
-  nota: sezione bandi e finanziamenti
 - numero: 79
   nome: CSVnet
-  sito: csvnet.it
+  sito: https://www.csvnet.it
   livello: italia
 - numero: 80
   nome: Forum Nazionale del Terzo Settore
-  sito: forumterzosettore.it
+  sito: https://www.forumterzosettore.it
   livello: italia
 - numero: 81
   nome: Percorsi di Secondo Welfare
-  sito: secondowelfare.it
+  sito: https://www.secondowelfare.it
   livello: italia
 - numero: 82
   nome: Redattore Sociale
-  sito: redattoresociale.it
+  sito: https://www.redattoresociale.it
   livello: italia
 - numero: 83
   nome: Non Profit Online
-  sito: nonprofitonline.it
+  sito: https://www.nonprofitonline.it
   livello: italia
 - numero: 84
   nome: Fondazioni.it (portale ACRI dedicato)
-  sito: fondazioni.it
+  sito: https://www.fondazioni.it
   livello: italia
 - numero: 85
   nome: Welforum
-  sito: welforum.it
+  sito: https://welforum.it
   livello: italia
 - numero: 86
   nome: ANCI (Associazione Nazionale Comuni Italiani)
-  sito: anci.it
+  sito: https://www.anci.it
   livello: italia
-  nota: bandi enti locali
 - numero: 87
   nome: UPI (Unione Province Italiane)
-  sito: upinet.it
+  sito: https://www.upinet.it
   livello: italia
 - numero: 88
   nome: Fondo Europeo per gli Affari Marittimi
-  sito: ec.europa.eu/oceans-and-fisheries
-  livello: europa
-  nota: se pertinente
+  sito: https://ec.europa.eu/oceans-and-fisheries
+  livello: italia
 - numero: 89
   nome: Rete Italiana Cultura Popolare
-  sito: reteitalianaculturapopolare.org
+  sito: https://www.reteitalianaculturapopolare.org
   livello: italia
 - numero: 90
-  nome: Fondazione Fitzcarraldo (osservatorio culturale)
-  sito: fitzcarraldo.it
+  nome: Cheope - Fondazione Fitzcarraldo
+  sito: https://www.fitzcarraldo.it
   livello: italia
-  nota: spesso segnala bandi
 - numero: 91
-  nome: MiC - Direzione Generale Cinema e Audiovisivo
-  sito: cinema.cultura.gov.it
+  nome: Cinema per Roma / MIC - Direzione Generale Cinema e Audiovisivo
+  sito: https://cinema.cultura.gov.it
   livello: italia
 - numero: 92
   nome: Fondo Unico per lo Spettacolo (FUS)
-  sito: cultura.gov.it/fus
+  sito: https://cultura.gov.it/fus
   livello: italia
 - numero: 93
-  nome: Bandi Cultura - Regione Emilia-Romagna
-  sito: cultura.regione.emilia-romagna.it
+  nome: Bandi Cultura Regione Emilia-Romagna
+  sito: https://cultura.regione.emilia-romagna.it
   livello: regione
   area: Emilia-Romagna
 - numero: 94
-  nome: Bandi Cultura - Regione Lombardia
-  sito: cultura.regione.lombardia.it
+  nome: Bandi Cultura Regione Lombardia
+  sito: https://cultura.regione.lombardia.it
   livello: regione
   area: Lombardia
 - numero: 95
-  nome: Bandi Cultura - Regione Piemonte
-  sito: cultura.regione.piemonte.it
+  nome: Bandi Cultura Regione Piemonte
+  sito: https://cultura.regione.piemonte.it
   livello: regione
   area: Piemonte
 - numero: 96
-  nome: Fondazione Italiana Accenture
-  sito: fondazioneitalianaaccenture.org
+  nome: Fondazione Italiana Accenture (progetti educativi)
+  sito: https://www.fondazioneitalianaaccenture.org
   livello: italia
-  nota: progetti educativi
 - numero: 97
   nome: Save the Children Italia
-  sito: savethechildren.it
+  sito: https://www.savethechildren.it
   livello: italia
-  nota: bandi su educazione/poverta' educativa
 - numero: 98
   nome: Con i Bambini - Impresa Sociale
-  sito: conibambini.org
+  sito: https://www.conibambini.org
   livello: italia
-  nota: Fondo poverta' educativa minorile
 - numero: 99
   nome: Fondo Ambiente Italiano (FAI)
-  sito: fondoambiente.it
+  sito: https://fondoambiente.it
   livello: italia
-  nota: recupero beni storico-culturali no profit
 - numero: 100
   nome: Fondazione Cassa Depositi e Prestiti
-  sito: fondazionecdp.it
+  sito: https://www.fondazionecdp.it
   livello: italia
-  nota: bandi su rigenerazione urbana e strutture sociali
