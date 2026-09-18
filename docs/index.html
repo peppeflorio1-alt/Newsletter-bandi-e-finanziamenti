@@ -2,15 +2,200 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bandi e finanziamenti - Newsletter di Peppe</title>
 <style>
-  body { font-family: sans-serif; background:#f7f5f0; color:#2b2b2b; text-align:center; padding:4rem 1rem; }
-  h1 { color:#8b3a2f; }
+  :root {
+    --colore-sfondo: #f7f5f0;
+    --colore-testo: #2b2b2b;
+    --colore-accento: #8b3a2f;
+    --colore-card: #ffffff;
+    --colore-bordo: #e3ddd2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    background: var(--colore-sfondo);
+    color: var(--colore-testo);
+    line-height: 1.5;
+  }
+  header {
+    padding: 2.5rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--colore-accento);
+  }
+  header h1 { margin: 0 0 0.3rem; font-size: 1.8rem; }
+  header p { margin: 0; color: #666; font-family: sans-serif; font-size: 0.9rem; }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  .filtro-livelli {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-family: sans-serif;
+  }
+  .filtro-livelli button {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--colore-accento);
+    background: transparent;
+    color: var(--colore-accento);
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .filtro-livelli button.attivo {
+    background: var(--colore-accento);
+    color: white;
+  }
+  section.livello { margin-bottom: 2.5rem; }
+  section.livello h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--colore-accento);
+    border-bottom: 1px solid var(--colore-bordo);
+    padding-bottom: 0.4rem;
+  }
+  .scheda-bando {
+    background: var(--colore-card);
+    border: 1px solid var(--colore-bordo);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.9rem;
+  }
+  .scheda-bando h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+  .scheda-bando h3 a { color: var(--colore-testo); text-decoration: none; }
+  .scheda-bando h3 a:hover { text-decoration: underline; }
+  .meta {
+    font-family: sans-serif;
+    font-size: 0.78rem;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+  .badge-nuovo {
+    display: inline-block;
+    background: var(--colore-accento);
+    color: white;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+  }
+  .badge-stato {
+    display: inline-block;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    margin-bottom: 0.5rem;
+  }
+  .badge-stato.aperto { background: #d8f0e0; color: #1e5c3a; }
+  .badge-stato.prossima_apertura { background: #fdf0d5; color: #8a5a00; }
+  .scadenza {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+  }
+  .scadenza.attiva { color: #2d6a4f; }
+  .scadenza.passata { color: #b23a2f; }
+  .riassunto { font-size: 0.92rem; color: #444; }
+  footer {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 0.78rem;
+    color: #999;
+    padding: 2rem 1rem;
+  }
+  .vuoto {
+    text-align: center;
+    font-family: sans-serif;
+    color: #888;
+    padding: 2rem;
+  }
 </style>
 </head>
 <body>
-  <h1>In attesa del primo aggiornamento</h1>
-  <p>Questa pagina verra' generata automaticamente al primo avvio del workflow<br>
-  (vedi README.md, sezione "Attivazione").</p>
+
+<header>
+  <h1>Bandi e finanziamenti - Newsletter di Peppe</h1>
+  <p>Aggiornata automaticamente il 18/09/2026 11:43  ·  2 bandi aperti o di prossima apertura</p>
+</header>
+
+<main>
+  <div class="filtro-livelli" id="filtro-livelli">
+    <button class="attivo" onclick="filtra('tutti', this)">Tutti</button>
+    
+      <button onclick="filtra('Lombardia', this)">Lombardia</button>
+    
+  </div>
+
+  
+
+  
+    <section class="livello" data-livello="Lombardia">
+      <h2>Lombardia</h2>
+      
+        <article class="scheda-bando">
+          <div class="badge-stato aperto">
+            Aperto
+          </div>
+          <h3><a href="https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/dettaglio/cultura-turismo-sport/spettacolo/avviso-pubblico-selezione-soggetti-linea-d-ambito-progetto-futura-spettacolo-lombardia-annualita-2026-2027-RLL12026054464" target="_blank" rel="noopener">AVVISO PUBBLICO PER LA SELEZIONE DEI SOGGETTI DELLA LINEA D NELL’AMBITO ...</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza attiva">Scade il 21/10/2026</div>
+          
+          <div class="meta">
+            Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)
+            
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Codice:RLL12026054464Il progetto “Futura – Lo spettacolo in Lombardia” (precedentemente denominato “Next – Laboratorio delle idee per la produzione e programmazione del...</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <div class="badge-stato aperto">
+            Aperto
+          </div>
+          <h3><a href="https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/dettaglio/cultura-turismo-sport/patrimonio-culturale/richiesta-riconoscimento-borgo-custode-patrimonio-musicale-lombardo-lombardi-RLL12026051743" target="_blank" rel="noopener">Richiesta riconoscimento “BORGO CUSTODE DEL PATRIMONIO MUSICALE LOMBARDO...</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+          <div class="meta">
+            Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)
+            
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Codice:RLL12026051743L’art. 6 della L.R. 5/2025 istituisce il riconoscimento dei Borghi custodi del patrimonio musicale lombardo e dei lombardi, con la finalità di sost...</div>
+        </article>
+      
+    </section>
+  
+</main>
+
+<footer>
+  Generata automaticamente da uno script Python (vedi il repository su GitHub).<br>
+  Verifica sempre i dettagli e le scadenze direttamente sul sito dell'ente.
+</footer>
+
+<script>
+  function filtra(livello, bottoneCliccato) {
+    document.querySelectorAll('.filtro-livelli button').forEach(b => b.classList.remove('attivo'));
+    bottoneCliccato.classList.add('attivo');
+    document.querySelectorAll('section.livello').forEach(sezione => {
+      sezione.style.display = (livello === 'tutti' || sezione.dataset.livello === livello) ? '' : 'none';
+    });
+  }
+</script>
+
 </body>
 </html>
