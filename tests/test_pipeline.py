@@ -19,6 +19,7 @@ from unittest.mock import patch, MagicMock
 
 import fetch_rss
 import fetch_plone
+import fetch_wordpress
 import filters
 import stato
 import stato_bando
@@ -144,10 +145,67 @@ def test_stato_bando():
     print("OK: stato_bando.py classifica correttamente i testi comuni")
 
 
+def test_tab_monitorata_ma_vuota():
+    """Se una fonte e' configurata (es. Emilia-Romagna) ma oggi non ha
+    nessun bando aperto da mostrare, la tab deve comunque comparire con un
+    messaggio, non sparire del tutto."""
+    bando_lombardia = {
+        "titolo": "Bando Lombardia aperto", "link": "https://esempio.it/1",
+        "riassunto": "", "ente": "Prova", "livello": "regione", "area": "Lombardia",
+        "primo_avvistamento": "2026-01-01", "nuovo_oggi": False,
+        "scadenza": "2099-12-31T00:00:00+00:00", "stato_testo": None,
+    }
+    percorso = genera_pagina.genera(
+        [bando_lombardia], "Test tab vuota",
+        chiavi_monitorate={"Lombardia", "Emilia-Romagna"},
+    )
+    contenuto = percorso.read_text(encoding="utf-8")
+    assert "Bando Lombardia aperto" in contenuto
+    assert "Emilia-Romagna" in contenuto
+    assert "Nessun bando aperto o di prossima apertura al momento in Emilia-Romagna" in contenuto
+    print("OK: le tab monitorate ma vuote mostrano un messaggio invece di sparire")
+
+
+def test_fetch_wordpress():
+    """Verifica fetch_wordpress.py con una risposta finta (stessa forma di
+    quella osservata davvero su Fondazione Cariplo/Carisbo), senza rete."""
+    pagina_1 = [{
+        "title": {"rendered": "Musei e accessibilit&#224; universale"},
+        "link": "https://esempio-fondazione.it/bando/musei/",
+        "content": {"rendered": "<p>Un bando di prova sulla <b>cultura</b>.</p>"},
+        "date": "2026-05-01T10:00:00",
+    }]
+
+    fonte_finta = {
+        "nome": "Fondazione di prova", "livello": "regione", "area": "Lombardia",
+        "url": "https://esempio-fondazione.it", "tipo_contenuto": "bando",
+    }
+
+    with patch("fetch_wordpress.requests.get") as mock_get:
+        risposta_pagina_1 = MagicMock()
+        risposta_pagina_1.status_code = 200
+        risposta_pagina_1.json.return_value = pagina_1
+        risposta_pagina_1.raise_for_status.return_value = None
+
+        risposta_pagina_2 = MagicMock()
+        risposta_pagina_2.status_code = 400  # simula "non c'e' una pagina 2"
+
+        mock_get.side_effect = [risposta_pagina_1, risposta_pagina_2]
+
+        bandi = fetch_wordpress.fetch(fonte_finta)
+
+    assert len(bandi) == 1
+    assert bandi[0]["titolo"] == "Musei e accessibilità universale"
+    assert "Un bando di prova sulla cultura" in bandi[0]["riassunto"]
+    print("OK: fetch_wordpress.py interpreta correttamente la risposta JSON")
+
+
 if __name__ == "__main__":
     bandi_filtrati = test_fetch_rss_e_filtro()
     test_stato_e_pagina(bandi_filtrati)
     test_fetch_plone()
+    test_fetch_wordpress()
     test_pagina_mostra_solo_aperti_e_scadenza()
     test_stato_bando()
+    test_tab_monitorata_ma_vuota()
     print("\nTutti i test sono passati.")

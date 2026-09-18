@@ -145,6 +145,9 @@
   {% for tab in ordine_tab %}
     <section class="livello" data-livello="{{ tab }}">
       <h2>{{ tab }}</h2>
+      {% if not bandi_per_tab[tab] %}
+        <p class="vuoto">Nessun bando aperto o di prossima apertura al momento in {{ tab }}. Questa fonte viene comunque controllata a ogni aggiornamento.</p>
+      {% endif %}
       {% for bando in bandi_per_tab[tab] %}
         <article class="scheda-bando">
           <div class="badge-stato {{ bando.stato_categoria }}">

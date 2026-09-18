@@ -10,7 +10,7 @@
 #     livello: comune | regione | italia | europa | internazionale
 #     area: "Emilia-Romagna"   # SOLO per livello comune/regione: decide in quale
 #                               # tab della pagina finisce (una tab per area)
-#     tipo: rss   oppure   html
+#     tipo: rss   oppure   html   oppure   plone   oppure   wordpress
 #     url: "https://..."
 #     (se tipo: html, servono anche i "selettori", vedi sotto e il README)
 #
@@ -60,6 +60,20 @@ fonti:
       scadenza_attributo: "value"
       stato: ".badge"
 
+  # ---------------------------------------------------------------------
+  # VERIFICATA IL 18/09/2026: fondazione bancaria, sito WordPress con un
+  # archivio dati pulito per i bandi (34 trovati). Manca pero' un dato
+  # strutturato di scadenza/stato: la fonte mostra sempre i bandi come
+  # aperti, assumendo che la fondazione tolga dall'elenco quelli chiusi
+  # (prassi comune, ma non garantita al 100%: vedi fetch_wordpress.py).
+  # ---------------------------------------------------------------------
+  - nome: "Fondazione Cariplo - Bandi"
+    livello: regione
+    area: "Lombardia"
+    tipo: wordpress
+    url: "https://www.fondazionecariplo.it"
+    tipo_contenuto: "bando"
+
   - nome: "Regione Piemonte - Bandi e finanziamenti"
     livello: regione
     area: "Piemonte"
@@ -72,6 +86,17 @@ fonti:
     tipo: rss
     url: "https://cultura.gov.it/avvisi/feed"
     da_verificare: true
+
+  # ---------------------------------------------------------------------
+  # VERIFICATA IL 18/09/2026: stessa piattaforma e stesso limite di
+  # Fondazione Cariplo qui sopra (WordPress, niente scadenza strutturata).
+  # ---------------------------------------------------------------------
+  - nome: "Fondazione Carisbo - Bandi e iniziative"
+    livello: regione
+    area: "Emilia-Romagna"
+    tipo: wordpress
+    url: "https://www.fondazionecarisbo.it"
+    tipo_contenuto: "bando"
 
   # ---------------------------------------------------------------------
   # ESEMPIO: fonte di tipo HTML (per siti senza RSS: comuni, alcuni portali

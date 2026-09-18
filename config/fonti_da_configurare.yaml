@@ -137,6 +137,7 @@ fonti_da_configurare:
   sito: https://www.fondazionecarisbo.it
   livello: regione
   area: Emilia-Romagna
+  nota: 'GIA'' ATTIVATA in sources.yaml (18/09/2026, tipo: wordpress)'
 - numero: 30
   nome: Fondazione Cassa di Risparmio di Modena
   sito: https://www.fondazione-crmo.it
@@ -194,6 +195,7 @@ fonti_da_configurare:
   sito: https://www.fondazionecariplo.it
   livello: regione
   area: Lombardia
+  nota: 'GIA'' ATTIVATA in sources.yaml (18/09/2026, tipo: wordpress)'
 - numero: 41
   nome: Fondazione Comunitaria Milano
   sito: https://www.fondazionecomunitariamilano.org
@@ -259,6 +261,7 @@ fonti_da_configurare:
   sito: https://www.compagniadisanpaolo.it
   livello: regione
   area: Piemonte
+  nota: 'Verificata il 18/09/2026: dati disponibili ma stato/scadenza non facilmente estraibili, da approfondire'
 - numero: 54
   nome: Fondazione CRT
   sito: https://www.fondazionecrt.it

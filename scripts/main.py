@@ -23,6 +23,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import fetch_rss
 import fetch_html
 import fetch_plone
+import fetch_wordpress
 import filters
 import stato
 import genera_pagina
@@ -46,6 +47,8 @@ def raccogli_bandi_da_tutte_le_fonti(fonti: list[dict]) -> list[dict]:
                 trovati = fetch_html.fetch(fonte)
             elif fonte["tipo"] == "plone":
                 trovati = fetch_plone.fetch(fonte)
+            elif fonte["tipo"] == "wordpress":
+                trovati = fetch_wordpress.fetch(fonte)
             else:
                 print(f"[ATTENZIONE] Tipo di fonte sconosciuto '{fonte['tipo']}' per {fonte['nome']}: saltata.")
                 continue
@@ -80,7 +83,8 @@ def main():
     stato.salva_stato(stato_salvato)
     print(f"Totale bandi da mostrare nella pagina (inclusi quelli dei giorni scorsi): {len(bandi_da_mostrare)}")
 
-    percorso_pagina = genera_pagina.genera(bandi_da_mostrare, titolo_pagina)
+    chiavi_monitorate = {genera_pagina.tab_di(fonte) for fonte in fonti_attive}
+    percorso_pagina = genera_pagina.genera(bandi_da_mostrare, titolo_pagina, chiavi_monitorate=chiavi_monitorate)
     print(f"=== Fatto. Pagina scritta in: {percorso_pagina} ===")
 
 

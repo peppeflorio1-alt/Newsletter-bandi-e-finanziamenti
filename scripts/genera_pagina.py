@@ -38,17 +38,18 @@ def _leggibile_e_scaduta(valore_scadenza) -> tuple[str | None, bool]:
     return data.strftime("%d/%m/%Y"), scaduta
 
 
-def _tab_del_bando(bando: dict) -> str:
-    """Decide in quale tab finisce un bando: una tab per ogni area/regione
-    (i bandi di un Comune finiscono nella tab della loro stessa regione),
-    altrimenti Italia / Europa / Internazionale in base al livello."""
-    if bando["livello"] in ("regione", "comune") and bando.get("area"):
-        return bando["area"]
-    if bando["livello"] == "italia":
+def tab_di(voce: dict) -> str:
+    """Decide in quale tab finisce una 'voce' (un bando, ma anche una
+    fonte configurata): una tab per ogni area/regione (i bandi/le fonti di
+    un Comune finiscono nella tab della loro stessa regione), altrimenti
+    Italia / Europa / Internazionale in base al livello."""
+    if voce["livello"] in ("regione", "comune") and voce.get("area"):
+        return voce["area"]
+    if voce["livello"] == "italia":
         return "Italia"
-    if bando["livello"] == "europa":
+    if voce["livello"] == "europa":
         return "Europa"
-    if bando["livello"] == "internazionale":
+    if voce["livello"] == "internazionale":
         return "Internazionale"
     return "Altro"
 
@@ -65,11 +66,19 @@ def _ordina_le_tab(chiavi_presenti) -> list[str]:
     return ordine
 
 
-def genera(bandi: list[dict], titolo_pagina: str) -> Path:
+def genera(bandi: list[dict], titolo_pagina: str, chiavi_monitorate: set[str] | None = None) -> Path:
     """
     Tiene solo i bandi aperti o di prossima apertura, li raggruppa in tab
     e scrive docs/index.html. Ritorna il percorso del file scritto.
+
+    'chiavi_monitorate' e' l'insieme delle tab per cui esiste almeno una
+    fonte configurata (calcolato da main.py a partire da sources.yaml):
+    serve per mostrare comunque quella tab, con un messaggio, anche nei
+    giorni in cui non ha bandi aperti da mostrare - cosi' si vede che la
+    fonte viene controllata regolarmente, invece di far sparire la tab.
     """
+    chiavi_monitorate = chiavi_monitorate or set()
+
     bandi_da_mostrare = []
     for bando in bandi:
         bando["scadenza_leggibile"], bando["scaduto"] = _leggibile_e_scaduta(bando.get("scadenza"))
@@ -87,13 +96,18 @@ def genera(bandi: list[dict], titolo_pagina: str) -> Path:
 
     bandi_per_tab: dict[str, list[dict]] = {}
     for bando in bandi_da_mostrare:
-        bandi_per_tab.setdefault(_tab_del_bando(bando), []).append(bando)
+        bandi_per_tab.setdefault(tab_di(bando), []).append(bando)
 
     for chiave in bandi_per_tab:
         bandi_per_tab[chiave].sort(
             key=lambda b: (b.get("nuovo_oggi", False), b.get("primo_avvistamento", "")),
             reverse=True,
         )
+
+    # Aggiunge (vuote) le tab monitorate che oggi non hanno bandi da mostrare,
+    # cosi' compaiono comunque con un messaggio invece di sparire.
+    for chiave in chiavi_monitorate:
+        bandi_per_tab.setdefault(chiave, [])
 
     ordine_tab = _ordina_le_tab(bandi_per_tab.keys())
 
