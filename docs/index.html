@@ -2,15 +2,961 @@
 <html lang="it">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bandi e finanziamenti - Newsletter di Peppe</title>
 <style>
-  body { font-family: sans-serif; background:#f7f5f0; color:#2b2b2b; text-align:center; padding:4rem 1rem; }
-  h1 { color:#8b3a2f; }
+  :root {
+    --colore-sfondo: #f7f5f0;
+    --colore-testo: #2b2b2b;
+    --colore-accento: #8b3a2f;
+    --colore-card: #ffffff;
+    --colore-bordo: #e3ddd2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Georgia", "Times New Roman", serif;
+    background: var(--colore-sfondo);
+    color: var(--colore-testo);
+    line-height: 1.5;
+  }
+  header {
+    padding: 2.5rem 1.5rem 1.5rem;
+    text-align: center;
+    border-bottom: 3px solid var(--colore-accento);
+  }
+  header h1 { margin: 0 0 0.3rem; font-size: 1.8rem; }
+  header p { margin: 0; color: #666; font-family: sans-serif; font-size: 0.9rem; }
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1.5rem;
+  }
+  .filtro-livelli {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    font-family: sans-serif;
+  }
+  .filtro-livelli button {
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--colore-accento);
+    background: transparent;
+    color: var(--colore-accento);
+    cursor: pointer;
+    font-size: 0.85rem;
+  }
+  .filtro-livelli button.attivo {
+    background: var(--colore-accento);
+    color: white;
+  }
+  section.livello { margin-bottom: 2.5rem; }
+  section.livello h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--colore-accento);
+    border-bottom: 1px solid var(--colore-bordo);
+    padding-bottom: 0.4rem;
+  }
+  .scheda-bando {
+    background: var(--colore-card);
+    border: 1px solid var(--colore-bordo);
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.9rem;
+  }
+  .scheda-bando h3 { margin: 0 0 0.3rem; font-size: 1.05rem; }
+  .scheda-bando h3 a { color: var(--colore-testo); text-decoration: none; }
+  .scheda-bando h3 a:hover { text-decoration: underline; }
+  .meta {
+    font-family: sans-serif;
+    font-size: 0.78rem;
+    color: #777;
+    margin-bottom: 0.4rem;
+  }
+  .badge-nuovo {
+    display: inline-block;
+    background: var(--colore-accento);
+    color: white;
+    font-family: sans-serif;
+    font-size: 0.7rem;
+    padding: 0.1rem 0.5rem;
+    border-radius: 999px;
+    margin-left: 0.5rem;
+  }
+  .scadenza {
+    font-family: sans-serif;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+  }
+  .scadenza.attiva { color: #2d6a4f; }
+  .scadenza.passata { color: #b23a2f; }
+  .riassunto { font-size: 0.92rem; color: #444; }
+  footer {
+    text-align: center;
+    font-family: sans-serif;
+    font-size: 0.78rem;
+    color: #999;
+    padding: 2rem 1rem;
+  }
+  .vuoto {
+    text-align: center;
+    font-family: sans-serif;
+    color: #888;
+    padding: 2rem;
+  }
 </style>
 </head>
 <body>
-  <h1>In attesa del primo aggiornamento</h1>
-  <p>Questa pagina verra' generata automaticamente al primo avvio del workflow<br>
-  (vedi README.md, sezione "Attivazione").</p>
+
+<header>
+  <h1>Bandi e finanziamenti - Newsletter di Peppe</h1>
+  <p>Aggiornata automaticamente il 18/09/2026 11:13  ·  44 bandi attivi</p>
+</header>
+
+<main>
+  <div class="filtro-livelli" id="filtro-livelli">
+    <button class="attivo" onclick="filtra('tutti', this)">Tutti</button>
+    
+      
+    
+      
+        <button onclick="filtra('regione', this)">Regioni (Emilia-Romagna, Lombardia, Piemonte, ...)</button>
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+
+  
+
+  
+    
+  
+    
+    <section class="livello" data-livello="regione">
+      <h2>Regioni (Emilia-Romagna, Lombardia, Piemonte, ...)</h2>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-2013-anno-2026" target="_blank" rel="noopener">Avviso per il sostegno allo sviluppo di opere cinematografiche e audiovisive, destinato ad imprese con sede in Emilia-Romagna – anno 2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 10/06/2026
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2026-05-06T09:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.R. 20/2014 “Norme in materia di cinema e audiovisivo”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-annuali-di-promozione-culturale-rivolto-ai-comuni-con-popolazione-superiore-ai-50-000-abitanti-2013-anno-2026" target="_blank" rel="noopener">Avviso per il sostegno a progetti annuali di promozione culturale rivolto ai Comuni con popolazione superiore ai 50.000 abitanti – Anno 2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 17/03/2026
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2026-02-03T15:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.R. n. 21/2023 "Nuove norme in materia di promozione culturale"</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-di-promozione-culturale-di-rilevanza-regionale-o-sovralocale-anno-2026" target="_blank" rel="noopener">Avviso per il sostegno a progetti di promozione culturale di rilevanza regionale o sovralocale - Anno 2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 05/02/2026
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2026-01-12T10:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">ai sensi della L.R. 21/2023 "Nuove norme in materia di promozione culturale"</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-realizzate-da-imprese-nazionali-europee-ed-extraeuropee-anno-2025-seconda-sessione" target="_blank" rel="noopener">Sostegno alla produzione di opere cinematografiche e audiovisive, realizzate da imprese nazionali, europee ed extraeuropee - anno 2025, seconda sessione</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/07/2025
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2025-07-01T11:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Produzione di lungometraggi, serie, documentari realizzata almeno in parte sul territorio regionale</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-di-promozione-culturale-rivolto-ai-comuni-con-popolazione-superiore-ai-50-000-abitanti-2013-anno-2025" target="_blank" rel="noopener">Avviso per il sostegno a progetti di promozione culturale rivolto ai Comuni con popolazione superiore ai 50.000 abitanti – Anno 2025</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 02/04/2025
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2025-03-17T15:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.R. n. 21/2023 "Nuove norme in materia di promozione culturale"</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-2013-anno-2025" target="_blank" rel="noopener">Bando per il sostegno allo sviluppo di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna – anno 2025</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 15/04/2025
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2025-03-12T15:50:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.r. 20/2014 "Norme in materia di cinema e audiovisivo"</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-attivita-di-promozione-culturale-progetti-di-rilevanza-regionale-o-sovralocale-anno-2025" target="_blank" rel="noopener">Avviso per attività di promozione culturale. Progetti di rilevanza regionale o sovralocale - Anno 2025</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 11/03/2025
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2025-02-11T09:45:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.R. 21/2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-relativi-ad-attivita-di-spettacolo-dal-vivo-per-il-triennio-2025-2027" target="_blank" rel="noopener">Avviso per la presentazione di progetti relativi ad attività di spettacolo dal vivo per il triennio 2025-2027</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 07/03/2025
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2025-02-06T10:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">ai sensi della L.R. 13/1999 "Norme in materia di spettacolo”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-di-promozione-culturale-promossi-da-reti-associative-triennio-2024-2026" target="_blank" rel="noopener">Avviso per il sostegno a progetti di promozione culturale promossi da reti associative - Triennio 2024-2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 01/07/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-06-14T07:55:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.r. 21/2023 in materia di promozione culturale</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-2013-anno-2024" target="_blank" rel="noopener">Avviso per il sostegno allo sviluppo di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna – anno 2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 21/06/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-06-10T09:55:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">L.R. n. 20/2014, art. 10 - Deliberazione della Giunta regionale n. 763/2024</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-di-promozione-della-cultura-cinematografica-e-audiovisiva-e-di-sostegno-allesercizio-cinematografico" target="_blank" rel="noopener">Avviso per la presentazione di progetti di promozione della cultura cinematografica e audiovisiva e di sostegno all'esercizio cinematografico</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/06/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-06-10T09:20:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">L.R. N. 20/2014 - Programma regionale in materia di cinema e audiovisivo, triennio 2024-2026, approvato con deliberazione dell’Assemblea Legislativa n. 150/2024 - Deliberazione della Giunta Regionale n. 934/2024</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-relativi-ad-interventi-per-spese-di-investimento-nel-settore-dello-spettacolo-1" target="_blank" rel="noopener">Avviso per la presentazione di progetti relativi ad interventi per spese di investimento nel settore dello spettacolo</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 10/09/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-05-30T09:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">In attuazione della L.r. 13/1999 "Norme in materia di spettacolo" (artt. 4 e 9) - Anni 2024-2026</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-di-promozione-culturale-promossi-da-fondazioni-e-soggetti-costituiti-partecipati-o-controllati-da-comuni-con-popolazione-inferiore-a-50-000-abitanti-anno-2024" target="_blank" rel="noopener">Avviso per il sostegno a progetti di promozione culturale promossi da Fondazioni e soggetti costituiti, partecipati o controllati da Comuni con popolazione inferiore a 50.000 abitanti - anno 2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 19/06/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-05-28T15:15:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della L.r. 21/2023 in materia di promozione culturale</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-alla-presentazione-di-progetti-a-valenza-regionale-di-produzione-e-fruizione-della-musica-contemporanea-originale-dal-vivo-triennio-2024-2026" target="_blank" rel="noopener">INVITO ALLA PRESENTAZIONE DI PROGETTI A VALENZA REGIONALE DI PRODUZIONE E FRUIZIONE DELLA MUSICA CONTEMPORANEA ORIGINALE DAL VIVO. TRIENNIO 2024-2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 08/05/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-04-09T07:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi dell’art. 8 della L.R. 2/2018 “Legge Regionale per lo sviluppo del settore musicale”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-alla-presentazione-di-progetti-per-la-qualificazione-dellalfabetizzazione-musicale-per-il-triennio-2024-2026" target="_blank" rel="noopener">INVITO ALLA PRESENTAZIONE DI PROGETTI PER LA QUALIFICAZIONE DELL'ALFABETIZZAZIONE MUSICALE PER IL TRIENNIO 2024-2026</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 02/05/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-04-03T09:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi dell’art. 5 della L.R.2/2018 "Norme in materia di sviluppo del settore musicale”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-rivolto-ai-comuni-con-popolazione-superiore-a-50-000-abitanti-a-presentare-progetti-di-promozione-culturale-2013-anno-2024" target="_blank" rel="noopener">Invito rivolto ai Comuni con popolazione superiore a 50.000 abitanti a presentare progetti di promozione culturale – anno 2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 06/05/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-03-28T09:20:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Modalità di presentazione delle domande, criteri di selezione dei progetti e modalità per la concessione dei contributi, ai sensi della L.R. n. 21/2023 “Nuove norme in materia di promozione culturale"</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-a-progetti-di-promozione-culturale-di-rilevanza-regionale-o-sovralocale-2013-anno-2024" target="_blank" rel="noopener">Avviso per il sostegno a progetti di Promozione culturale di rilevanza regionale o sovralocale – Anno 2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/03/2024
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2024-02-29T09:40:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Modalità e criteri per la presentazione delle domande, la concessione dei contributi e la realizzazione dei progetti  in attuazione della l.r. n. 21/2023. “Nuove norme in materia di promozione culturale. Abrogazione della L.R. n. 37/1994”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/concessione-di-contributi-ad-imprese-con-sede-in-emilia-romagna-che-realizzano-opere-cinematografiche-e-audiovisive-sul-territorio-regionale" target="_blank" rel="noopener">Concessione di contributi ad imprese con sede in Emilia-Romagna che realizzano opere cinematografiche e audiovisive sul territorio regionale</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 02/08/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-07-03T11:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Avviso 2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-rivolto-ai-comuni-con-popolazione-superiore-a-50-000-abitanti-a-presentare-progetti-di-promozione-culturale-2013-anno-2022" target="_blank" rel="noopener">Invito rivolto ai Comuni con popolazione superiore a 50.000 abitanti a presentare progetti di promozione culturale – anno 2023</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 03/05/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-02-21T14:05:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Modalità di presentazione delle domande, criteri di selezione dei progetti e modalità per la concessione dei contributi</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-a-progetti-di-promozione-culturale-per-attivita-di-dimensione-sovralocale-l-r-n-37-1994" target="_blank" rel="noopener">Sostegno a progetti di promozione culturale per attività di dimensione sovralocale - L.r. n. 37/1994</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 02/03/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-02-02T08:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Avviso rivolto a Organizzazioni, Associazioni, Istituzioni culturali, Comuni e Unioni di Comuni - anno 2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive-bando-destinato-ad-imprese-con-sede-in-emilia-romagna" target="_blank" rel="noopener">Sostegno allo sviluppo di opere cinematografiche e audiovisive</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 15/03/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-02-01T10:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Bando destinato ad imprese con sede in Emilia-Romagna – anno 2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-realizzate-da-imprese-nazionali-europee-ed-extraeuropee-anno-2023" target="_blank" rel="noopener">Bando per il sostegno alla produzione di opere cinematografiche e audiovisive, realizzate da imprese nazionali, europee ed extraeuropee - Anno 2023</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/02/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-01-09T09:10:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Con deliberazione della Giunta Regionale n. 2275 del 19.12.2022 è stato approvato il bando per la concessione di contributi ad imprese con sede in Emilia-Romagna .</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-anno-2023" target="_blank" rel="noopener">Bando per il sostegno alla produzione di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna - Anno 2023</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/02/2023
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2023-01-09T09:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Con deliberazione della Giunta Regionale n. 2275 del 19.12.2022 è stato approvato il bando per la concessione di contributi ad imprese con sede in Emilia-Romagna</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/youz-officina" target="_blank" rel="noopener">"Avviso Youz Officina per il sostegno ad iniziative promosse da gruppi informali di giovani e associazioni giovanili caratterizzati da approcci innovativi - Anno 2022</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 03/11/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-09-23T08:50:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Modalità e criteri per la presentazione delle domande, la concessione dei contributi e la realizzazione dei progetti" in attuazione dell'Accordo di collaborazione Geco 11 bis, ai sensi dell'intesa rep. 104/cu del 4/08/2021</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-anno-2022" target="_blank" rel="noopener">Bando per il sostegno alla produzione di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna - Anno 2022</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/07/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-07-01T15:15:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Seconda sessione</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-relativi-ad-interventi-per-spese-di-investimento-nel-settore-dello-spettacolo" target="_blank" rel="noopener">Avviso per la presentazione di progetti relativi ad interventi per spese di investimento nel settore dello spettacolo</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 29/08/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-06-23T08:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi della legge regionale n. 13/99 “Norme in materia di spettacolo” – annualità 2023-2024</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-relativi-ad-un-centro-di-residenza-e-a-residenze-per-artisti-nei-territori-per-il-triennio-2022-2024" target="_blank" rel="noopener">Avviso per la presentazione di progetti relativi ad un centro di residenza e a residenze per artisti nei territori per il triennio 2022-2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 13/06/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-05-19T11:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi dell’Intesa Stato/Regioni e Province Autonome Rep. n. 224/CSR del 3.11.2021 e dell’Accordo di programma interregionale 2022-2024, in attuazione dell’art. 43 “Residenze” del D.M. n. 332 del 27.7.2017 e ss.mm. e della L.R. 13/99 “Norme in materia di spettacolo” e ss.mm.</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/l-r-37-94-ss-mm-ii-sostegno-ad-attivita-di-promozione-culturale-di-dimensione-regionale-tramite-convenzione" target="_blank" rel="noopener">L.R. 37/94 ss.mm.ii. - Sostegno ad attività di promozione culturale di dimensione regionale tramite convenzione. Biennio 2022-2023</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/05/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-05-10T09:25:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">L’Avviso, approvato con Deliberazione della Giunta regionale n. 685 del 4 maggio 2022, si rivolge a Organizzazioni e Associazioni di dimensione regionale</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/l-r-n-14-2008-norme-in-materia-di-politiche-per-le-giovani-generazioni-priorita-modalita-e-criteri-di-accesso-ai-contributi-regionali-per-interventi-a-favore-dei-giovani-per-il-triennio-2022-2013-2024" target="_blank" rel="noopener">L.r. n. 14/2008 - Norme in materia di politiche per le giovani generazioni - Priorità, modalità e criteri di accesso ai contributi regionali per interventi a favore dei giovani per il triennio 2022 – 2024</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/05/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-05-05T07:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Invito alla presentazione di progetti di spesa corrente realizzati da Unioni di Comuni, Comuni capoluogo e Associazioni di Comuni capoluogo.</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-a-progetti-di-promozione-culturale-per-attivita-di-dimensione-sovralocale-l-r-37-1994" target="_blank" rel="noopener">Sostegno a progetti di promozione culturale per attività di dimensione sovralocale - L.r.  n. 37/1994</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 04/05/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-04-13T08:30:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Avviso rivolto a Organizzazioni, Associazioni, Istituzioni culturali, Comuni e Unioni di comuni - anno 2022</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-la-presentazione-di-progetti-relativi-ad-attivita-di-spettacolo-dal-vivo" target="_blank" rel="noopener">Avviso per la presentazione di progetti relativi ad attività di spettacolo dal vivo</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/04/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-04-05T08:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Triennio 2022-2024, ai sensi della L.r. 13/99 "Norme in materia di spettacolo" e ss.mm.</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive" target="_blank" rel="noopener">Sostegno allo sviluppo di opere cinematografiche e audiovisive. Bando destinato ad imprese con sede in Emilia-Romagna</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 15/03/2022
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2022-02-03T09:57:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Bando destinato ad imprese con sede in Emilia-Romagna – anno 2022</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-pubblico-per-la-concessione-di-201cbonus-una-tantum201d" target="_blank" rel="noopener">Concessione di “Bonus una tantum” ai live club e agli operatori di produzione di teatro per ragazzi</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 06/12/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-11-18T09:37:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Avviso pubblico in attuazione dell’art. 26 D.L. 22 marzo 2021, n. 41, a seguito dell’emergenza sanitaria Covid-19</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-alla-presentazione-di-progetti-per-la-qualificazione-dellalfabetizzazione-musicale" target="_blank" rel="noopener">Invito alla presentazione di progetti per la qualificazione dell'alfabetizzazione musicale</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 20/09/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-08-12T11:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Ai sensi dell'art. 5 della l.r. n. 2/2018 per il triennio 2021-2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-1" target="_blank" rel="noopener">Sostegno alla produzione di opere cinematografiche e audiovisive. Bando rivolto ad imprese con sede in Emilia-Romagna</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/07/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-07-01T16:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Anno 2021, seconda sessione</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/presentazione-di-progetti-di-promozione-della-cultura-cinematografica-e-audiovisiva-e-di-sostegno-allesercizio-cinematografico" target="_blank" rel="noopener">Avviso per la presentazione di progetti di promozione della cultura cinematografica e audiovisiva e di sostegno all'esercizio cinematografico</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 26/07/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-06-29T15:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Triennio 2021 - 2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-2021-2022-l-r-14-08-201cnorme-in-materia-di-politiche-per-le-giovani-generazioni201d" target="_blank" rel="noopener">Bando 2021-2022 - L.R 14/08 “Norme in materia di politiche per le giovani generazioni”</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 09/07/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-05-18T07:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Invito alla presentazione di progetti in spesa investimento per il biennio 2021-2022</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/invito-alla-presentazione-di-progetti-a-valenza-regionale-di-produzione-e-fruizione-della-musica-contemporanea-originale-dal-vivo" target="_blank" rel="noopener">Invito alla presentazione di progetti a valenza regionale di produzione e fruizione della musica contemporanea originale dal vivo</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 20/05/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-05-03T12:15:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">(L.R. n. 2/2018, art.8). Triennio 2021-2023</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/avviso-per-il-sostegno-ad-attivita-di-promozione-culturale-anno-2021" target="_blank" rel="noopener">Avviso per il sostegno ad attività di promozione culturale - anno 2021</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/03/2021
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2021-03-08T09:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">L.R. 37/94 “Norme in materia di promozione culturale”</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-anno-2020-2" target="_blank" rel="noopener">Bando per il sostegno alla produzione di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna - Anno 2020</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/07/2020
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2020-07-01T09:00:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Bando produzione per imprese regionali - seconda sessione</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-alla-produzione-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-anno-2020" target="_blank" rel="noopener">Bando per il sostegno alla produzione di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna - Anno 2020</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 28/02/2020
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2020-01-29T11:57:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Bando produzione per imprese regionali - prima sessione</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.regione.emilia-romagna.it/leggi-atti-bandi/bandi-finanziamenti-contributi/cultura/bando-per-il-sostegno-allo-sviluppo-di-opere-cinematografiche-e-audiovisive-destinato-ad-imprese-con-sede-in-emilia-romagna-anno-2020" target="_blank" rel="noopener">Bando per il sostegno allo sviluppo di opere cinematografiche e audiovisive destinato ad imprese con sede in Emilia-Romagna - anno 2020</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza passata">
+              Scadenza superata: 31/01/2020
+              
+            </div>
+          
+          <div class="meta">
+            Regione Emilia-Romagna - Bandi per finanziamenti e contributi
+             · pubblicato: 2020-01-17T12:22:00+00:00
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Bando produzione per lo sviluppo</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/dettaglio/cultura-turismo-sport/spettacolo/avviso-pubblico-selezione-soggetti-linea-d-ambito-progetto-futura-spettacolo-lombardia-annualita-2026-2027-RLL12026054464" target="_blank" rel="noopener">AVVISO PUBBLICO PER LA SELEZIONE DEI SOGGETTI DELLA LINEA D NELL’AMBITO ...</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+            <div class="scadenza attiva">
+              Scade il 21/10/2026
+            </div>
+          
+          <div class="meta">
+            Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)
+            
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Codice:RLL12026054464Il progetto “Futura – Lo spettacolo in Lombardia” (precedentemente denominato “Next – Laboratorio delle idee per la produzione e programmazione del...</div>
+        </article>
+      
+        <article class="scheda-bando">
+          <h3><a href="https://www.bandi.regione.lombardia.it/servizi/servizio/catalogo/dettaglio/cultura-turismo-sport/patrimonio-culturale/richiesta-riconoscimento-borgo-custode-patrimonio-musicale-lombardo-lombardi-RLL12026051743" target="_blank" rel="noopener">Richiesta riconoscimento “BORGO CUSTODE DEL PATRIMONIO MUSICALE LOMBARDO...</a>
+            <span class="badge-nuovo">NUOVO</span>
+          </h3>
+          
+          <div class="meta">
+            Regione Lombardia - Bandi (tematica Cultura, Turismo e Sport)
+            
+            · visto per la prima volta il 2026-09-18
+          </div>
+          <div class="riassunto">Codice:RLL12026051743L’art. 6 della L.R. 5/2025 istituisce il riconoscimento dei Borghi custodi del patrimonio musicale lombardo e dei lombardi, con la finalità di sost...</div>
+        </article>
+      
+    </section>
+    
+  
+    
+  
+    
+  
+    
+  
+</main>
+
+<footer>
+  Generata automaticamente da uno script Python (vedi il repository su GitHub).<br>
+  Verifica sempre i dettagli e le scadenze direttamente sul sito dell'ente.
+</footer>
+
+<script>
+  function filtra(livello, bottoneCliccato) {
+    document.querySelectorAll('.filtro-livelli button').forEach(b => b.classList.remove('attivo'));
+    bottoneCliccato.classList.add('attivo');
+    document.querySelectorAll('section.livello').forEach(sezione => {
+      sezione.style.display = (livello === 'tutti' || sezione.dataset.livello === livello) ? '' : 'none';
+    });
+  }
+</script>
+
 </body>
 </html>
