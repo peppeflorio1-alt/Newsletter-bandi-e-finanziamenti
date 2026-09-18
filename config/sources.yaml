@@ -1,0 +1,135 @@
+# =========================================================================
+# CONFIGURAZIONE DELLE FONTI
+# =========================================================================
+# Qui elenchi TUTTI i siti da cui vuoi che la newsletter prenda i bandi.
+# Non serve programmare per modificare questo file: e' solo una lista.
+#
+# Ogni fonte ha questa forma:
+#
+#   - nome: "Nome che apparira' nella pagina"
+#     livello: comune | regione | italia | europa | internazionale
+#     tipo: rss   oppure   html
+#     url: "https://..."
+#     (se tipo: html, servono anche i "selettori", vedi sotto e il README)
+#
+# NOTA IMPORTANTE:
+# Gli URL RSS qui sotto sono ESEMPI PLAUSIBILI ma NON sono stati verificati
+# (io non ho accesso a internet in questa sessione). Prima di lasciare che
+# la newsletter giri da sola, apri ciascun link nel browser e controlla che
+# funzioni. Il README spiega come trovare il feed RSS giusto per un sito e
+# come sostituirlo se quello scritto qui non e' corretto.
+# =========================================================================
+
+fonti:
+  # ---------------------------------------------------------------------
+  # ESEMPIO: fonte di tipo RSS (il tipo piu' semplice, quasi mai da toccare)
+  # ---------------------------------------------------------------------
+  - nome: "Regione Emilia-Romagna - Bandi e finanziamenti"
+    livello: regione
+    tipo: rss
+    url: "https://www.regione.emilia-romagna.it/rss/bandi-e-finanziamenti"
+    da_verificare: true
+
+  - nome: "Regione Lombardia - Bandi"
+    livello: regione
+    tipo: rss
+    url: "https://www.regione.lombardia.it/wps/wcm/connect/rss/bandi"
+    da_verificare: true
+
+  - nome: "Regione Piemonte - Bandi e finanziamenti"
+    livello: regione
+    tipo: rss
+    url: "https://www.regione.piemonte.it/web/rss/bandi.xml"
+    da_verificare: true
+
+  - nome: "Ministero della Cultura - Avvisi e bandi"
+    livello: italia
+    tipo: rss
+    url: "https://cultura.gov.it/avvisi/feed"
+    da_verificare: true
+
+  # ---------------------------------------------------------------------
+  # ESEMPIO: fonte di tipo HTML (per siti senza RSS: comuni, alcuni portali
+  # regionali, ecc.). Qui servono i "selettori CSS", cioe' le istruzioni
+  # che dicono allo script dove guardare nella pagina. Il README spiega
+  # come trovarli con pochi click, senza scrivere codice.
+  # ---------------------------------------------------------------------
+  - nome: "Comune di Grazzanise - Albo bandi (ESEMPIO da configurare)"
+    livello: comune
+    tipo: html
+    url: "https://www.comune.grazzanise.ce.it/bandi-di-gara-e-concorso"
+    da_verificare: true
+    selettori:
+      contenitore_elemento: "div.elenco-bandi article"   # ogni "scheda" di bando
+      titolo: "h2 a"                                     # dentro la scheda: il titolo
+      link: "h2 a"                                       # dentro la scheda: il link (attributo href)
+      data: "time"                                       # dentro la scheda: la data (opzionale)
+      riassunto: "p.excerpt"                              # dentro la scheda: descrizione (opzionale)
+
+  # ---------------------------------------------------------------------
+  # Funding & Tenders Portal (Unione Europea) - livello europeo.
+  # Il portale UE offre una ricerca via web ma l'endpoint API pubblico
+  # cambia nel tempo: verificare su
+  # https://ec.europa.eu/info/funding-tenders/opportunities/portal/
+  # prima di attivare. Lasciato come promemoria/placeholder.
+  # ---------------------------------------------------------------------
+  # - nome: "EU Funding & Tenders Portal"
+  #   livello: europa
+  #   tipo: html
+  #   url: "https://ec.europa.eu/info/funding-tenders/opportunities/portal/screen/opportunities/calls-for-proposals"
+  #   da_verificare: true
+  #   selettori:
+  #     contenitore_elemento: ".eui-card"
+  #     titolo: ".eui-card-header-title"
+  #     link: "a"
+  #     data: ".eui-u-text-annotation"
+
+# =========================================================================
+# PAROLE CHIAVE PER IL FILTRO
+# =========================================================================
+# Un bando viene incluso nella newsletter solo se il suo titolo o la sua
+# descrizione contengono ALMENO UNA di queste parole (non maiuscole/minuscole,
+# non serve mettere accenti in piu' varianti, lo script normalizza da solo).
+# Aggiungi o togli parole liberamente, una per riga.
+# =========================================================================
+
+parole_chiave:
+  - cultura
+  - culturale
+  - culturali
+  - arte
+  - artistico
+  - spettacolo
+  - teatro
+  - musica
+  - patrimonio
+  - partecipazione
+  - partecipativo
+  - cittadinanza attiva
+  - democrazia
+  - democratico
+  - inclusione
+  - giovani
+  - giovanile
+  - sociale
+  - terzo settore
+  - associazionismo
+  - volontariato
+  - ristrutturazione
+  - riqualificazione
+  - recupero
+  - immobile
+  - immobili
+  - sede
+  - sale
+  - sala
+  - centro di aggregazione
+  - spazi
+  - edilizia
+
+# =========================================================================
+# ALTRE IMPOSTAZIONI
+# =========================================================================
+impostazioni:
+  giorni_di_permanenza: 60   # dopo quanti giorni un bando sparisce dalla pagina se non ricompare nella fonte
+  titolo_pagina: "Bandi e finanziamenti - Newsletter di Peppe"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>Feed di prova</title>
+  <item>
+    <title>Bando per il restauro di sale ed eventi culturali comunali</title>
+    <link>https://esempio.it/bando-1</link>
+    <description>Contributo per la ristrutturazione di locali destinati ad attivita' culturali.</description>
+    <pubDate>Mon, 15 Sep 2026 09:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Avviso pubblico per la manutenzione stradale</title>
+    <link>https://esempio.it/bando-2</link>
+    <description>Lavori di asfaltatura in centro citta'.</description>
+    <pubDate>Mon, 15 Sep 2026 09:00:00 GMT</pubDate>
+  </item>
+  <item>
+    <title>Bando partecipazione giovanile e cittadinanza attiva</title>
+    <link>https://esempio.it/bando-3</link>
+    <description>Sostegno a progetti di democrazia partecipativa rivolti ai giovani.</description>
+    <pubDate>Tue, 16 Sep 2026 09:00:00 GMT</pubDate>
+  </item>
+</channel>
+</rss>
